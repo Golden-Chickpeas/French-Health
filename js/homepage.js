@@ -7,21 +7,6 @@
 */
 //HISTORY : January 1st 2018 - Initial design and coding (@vz-chameleon)
 
-/**
-* Custom resize function
-*/
-function resize() {
-    var width = $(window).width();
-    var height = $(window).height();
-
-    projection.scale([height * 5])
-              .translate([width / 2, height / 2]);
-
-    d3.select("#map").attr("width", width).attr("height", height);
-    d3.select("svg").attr("width", width).attr("height", height);
-
-    d3.selectAll("path").attr('d', path);
-}
 
 /**
 * A function to initialize homepage
@@ -31,9 +16,6 @@ function initHomepage(){
 
   var width = $(window).width();
   var height = $(window).height();
-
-  // Set resize function through d3 var
-  d3.select(window).on('resize', resize);
 
 
   //------- FRANCE'S MAP SET UP (OLD REGIONS, before 2015) ------
