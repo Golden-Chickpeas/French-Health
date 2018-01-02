@@ -19,7 +19,7 @@ function load_dataset(data, mappedCategory){
       .domain([d3.min(data, function (e) { return +e.mean_qte_brute; }), d3.max(data, function (e) { return +e.mean_qte_brute; })])
       .range(d3.range(4));
 
-  console.log(quantile)
+  //console.log(quantile)
   // Read data from csv and put it on the map
 
     data.forEach(function (e, i) { // For each item in the csv file
@@ -30,7 +30,7 @@ function load_dataset(data, mappedCategory){
           //Select a region in the map, we need a correct code for that
           d3.select("#r" + region_num_to_postal_code_map[e.reg_code])
                 .attr("class", function (d) {
-                        //console.log(quantile(+e.mean_qte_brute));
+                        console.log(quantile(+e.mean_qte_brute));
                         return "France_region q" + quantile(+e.mean_qte_brute);
                     });
     });
@@ -56,6 +56,7 @@ function updateMeansMap(category){
         var dsv=d3.dsvFormat(';');
         var data=dsv.parse(raw);
         load_dataset(data, "cereales_pdej");});
+        $("#france_map svg").attr("class", "gold_shades");
       break;
 
     case "pâtisseries et gâteaux":
@@ -64,6 +65,7 @@ function updateMeansMap(category){
         var dsv=d3.dsvFormat(';');
         var data=dsv.parse(raw);
         load_dataset(data, "patisserie");});
+        $("#france_map svg").attr("class", "grey_shades");
       break;
 
     default:
