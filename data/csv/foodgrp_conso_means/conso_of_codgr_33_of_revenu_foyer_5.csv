@@ -1,0 +1,22 @@
+;reg_code;reg_name;entries_num;indiv_num;mean_qte_brute
+0;1;Région Parisienne;14;17;166.428571429
+1;2;Champagne;2;6;540.0
+2;3;Picardie;12;5;175.0
+3;4;Haute-Normandie;4;3;240.0
+4;5;Centre;34;13;150.147058824
+5;6;Basse-Normandie;8;2;622.5
+6;7;Bourgogne;2;2;8.0
+7;8;Nord;8;7;200.0
+8;9;Lorraine;14;10;205.357142857
+9;10;Alsace;12;5;198.333333333
+10;11;Franche Comté;8;6;42.5
+11;12;Pays de la Loire;8;7;198.0
+12;13;Bretagne;11;8;591.272727273
+13;14;Poitou Charentes;38;10;201.052631579
+14;15;Aquitaine;9;17;148.222222222
+15;16;Midi-Pyrénées;20;11;100.575
+16;17;limousin;0;3;
+17;18;Rhône-Alpes;54;18;153.392592593
+18;19;Auvergne;17;9;69.4117647059
+19;20;Languedoc;17;14;112.941176471
+20;21;Provence Côte d'Azur;6;10;258.333333333
