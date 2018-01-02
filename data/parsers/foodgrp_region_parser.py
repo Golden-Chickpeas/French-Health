@@ -18,7 +18,7 @@ import numpy as np
 data_url_conso='../raw/INCA2/Table_conso.csv'
 df_conso=pd.read_csv(data_url_conso, sep = ';')
 
-for reg_code in (1,21):
+for reg_code in range(1,22):
     data_url_indiv_region='../csv/indiv_by_region/indiv_per_region_'+str(reg_code)+'.csv'
     df_indiv_reg=pd.read_csv(data_url_indiv_region, sep = ';')
 
