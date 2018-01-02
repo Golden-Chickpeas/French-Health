@@ -43,7 +43,6 @@ function update_legend(quantile_func,nb_quantiles){
 	d3.select('#legend').remove();
   var width=800; var height=600;
 
-
 	var legend = d3.select('svg').append("g")
              .attr("transform", "translate(" + Math.round((width / 2) + width * 0.2) + ", " + Math.round(height / 2) + ")")
             .attr("id", "legend");
@@ -51,7 +50,6 @@ function update_legend(quantile_func,nb_quantiles){
   //Data units default
   var unit = "g/jour";
 
-  // Add colorbar
   legend.selectAll(".colorbar")
         .data(d3.range(nb_quantiles))
         .enter()
@@ -68,7 +66,7 @@ function update_legend(quantile_func,nb_quantiles){
             .enter()
             .append("text")
             .attr("x", "30px")
-            .attr("y", function (d) { return (d * 20 + 15) + "px"; })
+            .attr("y", function (d) { return (d * 21 + 12) + "px"; })
             .text(function (d) {
 				        	switch(d) {
               					case 0 :
