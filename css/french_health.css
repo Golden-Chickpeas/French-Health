@@ -52,6 +52,10 @@ path.France_region:hover{
   width: 35%;
 }
 
+.footdescription{
+	top: -16px;
+}
+
 .footlogo span > img {
   width: 20%;
   height: auto;
