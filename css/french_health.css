@@ -1,0 +1,58 @@
+
+* {
+	position: relative;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+
+div.container{
+  max-height: 700px;
+}
+
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    color: black;
+    width: 275px;
+    height: 37px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: grey;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+path.France_region:hover{
+  fill: green;
+}
+
+
+.footer{
+  display: table;
+  max-height: 70px;
+  width: 100%;
+  /*positioexpln: absolute;*/
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /*padding: 1rem;*/
+  background-color: #efefef;
+  text-align: center;
+  padding-top: 25px
+}
+
+.footlogo {
+  display: table-cell;
+  line-height: 0;
+  width: 35%;
+}
+
+.footlogo span > img {
+  width: 20%;
+  height: auto;
+}
