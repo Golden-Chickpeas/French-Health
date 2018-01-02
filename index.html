@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Page d'accueil">
+    <meta name="author" content="VZ + TG">
+    <title>Visualisation des données : Santé et habitudes alimentaires en France</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/queue.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
+
+    <script src="js/homepage.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/french_health.css"/>
+    <!-- This stylesheet is in fact the icon sheet generated for fonts -->
+    <!--<link rel="stylesheet" href="css/style.css">-->
+
+<body id="body">
+
+  <div class="container" >
+  	<div class= "titles_placeholder">
+  			<h1 id="main_title_placeholder"> Testing the map</h1>
+  			<div>
+  				<h2 id="subtitle_placeholder"> Whyyy </h2>
+  			</div>
+  	</div>
+
+  <div class = 'row'>
+    <div class="col-md-3">
+  	 An access menu ?
+    </div>
+
+    <div class="col-md-6">
+        <div id='france_map'></div>
+    </div>
+
+    <div class="col-md-3">
+  	 A description here ? <br/>
+     A description here ? <br/>
+     A description here ? <br/>
+     A description here ? <br/>
+    </div>
+  </div>
+
+  </div>
+
+  <div class="footer">
+        <div id="ul-logo" class="footlogo">
+          <span><img src="img/logos/ul-logo.png"></img></span>
+        </div>
+        <div class="foot_description">
+          <span> <b>Auteurs</b> : Timothy Garwood +  Valentina Zelaya </span><br/>
+          <span> <em>Master 2 IPAC parcours Recherche </em></span>
+        </div>
+        <div id="fst-logo" class="footlogo">
+          <span><img src="img/logos/lafaculte-logo.png"></img></span>
+        </div>
+    </div>
+
+</div>
+
+<script>
+initHomepage();
+</script>
+
+</body>
