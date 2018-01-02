@@ -30,10 +30,63 @@ function load_dataset(data, mappedCategory){
           //Select a region in the map, we need a correct code for that
           d3.select("#r" + region_num_to_postal_code_map[e.reg_code])
                 .attr("class", function (d) {
-                        console.log(quantile(+e.mean_qte_brute));
+                        //console.log(quantile(+e.mean_qte_brute));
                         return "France_region q" + quantile(+e.mean_qte_brute);
                     });
     });
+
+    update_legend(quantile,4)
+}
+
+function update_legend(quantile_func,nb_quantiles){
+  // Delete the previous legend (if there is none, nothing happens)
+	d3.select('#legend').remove();
+  var width=800; var height=600;
+
+
+	var legend = d3.select('svg').append("g")
+             .attr("transform", "translate(" + Math.round((width / 2) + width * 0.2) + ", " + Math.round(height / 2) + ")")
+            .attr("id", "legend");
+
+  //Data units default
+  var unit = "g/jour";
+
+  // Add colorbar
+  legend.selectAll(".colorbar")
+        .data(d3.range(nb_quantiles))
+        .enter()
+        .append("svg:rect")
+        .attr("y", function (d) { return d * 20 + "px"; })
+        .attr("height", "20px")
+        .attr("width", "30px")
+        .attr("x", "0px")
+        .attr("class", function (d) { return "q" + d ; });
+
+        // Add legend to each color
+        legend.selectAll(".colorbar")
+            .data(d3.range(nb_quantiles))
+            .enter()
+            .append("text")
+            .attr("x", "30px")
+            .attr("y", function (d) { return (d * 20 + 15) + "px"; })
+            .text(function (d) {
+				        	switch(d) {
+              					case 0 :
+              						return "< " + Math.round(quantile_func.quantiles()[0]) + " " + unit;
+              						break;
+              					case 1:
+              						return Math.round(quantile_func.quantiles()[0]) + " - " + Math.round(quantile_func.quantiles()[1]) + " "+ unit ;
+              						break;
+              					case 2:
+              						return Math.round(quantile_func.quantiles()[1]) + " - " + Math.round(quantile_func.quantiles()[2]) + " "+ unit ;
+              						break;
+              					case 3 :
+              						return "> " + Math.round(quantile_func.quantiles()[2]) + " "+ unit;
+              						break;
+              			  }
+
+			        })
+			        .attr("id","legendText");
 }
 
 function updateMeansMap(category){
