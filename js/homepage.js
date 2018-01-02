@@ -23,10 +23,6 @@ function resize() {
     d3.selectAll("path").attr('d', path);
 }
 
-
-function updateMeansMap(){
-  alert("Updating means with :");
-}
 /**
 * A function to initialize homepage
 * Here is where we load France's regions map
@@ -101,12 +97,8 @@ function initHomepage(){
       				$('.navbar-primary').toggleClass('collapsed');
       });
 
-      // $('.top-layer-nav').click(function(e) {
-      //
-      //     document.getElementById('wrapper').style.display = "flex";
-      //     document.getElementById('home').style.display = "none";
-      //     document.getElementById('showSlides').style.display = "table";
-      // 				$('.navbar-primary').toggleClass('collapsed');
-      // });
+      $('.lowest-layer-nav').click(function(e) {
+        updateMeansMap($(this).text());
+      });
 
 }
