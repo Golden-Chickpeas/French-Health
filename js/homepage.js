@@ -7,22 +7,6 @@
 */
 //HISTORY : January 1st 2018 - Initial design and coding (@vz-chameleon)
 
-/**
-* Custom resize function
-*/
-function resize() {
-    var width = $(window).width();
-    var height = $(window).height();
-
-    projection.scale([height * 5])
-              .translate([width / 2, height / 2]);
-
-    d3.select("#map").attr("width", width).attr("height", height);
-    d3.select("svg").attr("width", width).attr("height", height);
-
-    d3.selectAll("path").attr('d', path);
-}
-
 
 /**
 * A function to initialize homepage
@@ -32,9 +16,6 @@ function initHomepage(){
 
   var width = $(window).width();
   var height = $(window).height();
-
-  // Set resize function through d3 var
-  d3.select(window).on('resize', resize);
 
 
   //------- FRANCE'S MAP SET UP (OLD REGIONS, before 2015) ------
@@ -57,19 +38,21 @@ function initHomepage(){
   		        .attr("height", height);
 
   // Append the group that will contain our paths
-  //var fr_regions = svg.append("g");
-  var deps=svg.append("g");
+  var fr_regions = svg.append("g");
 
   var div = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
   d3.json('data/regions-avant-redecoupage-2015.geojson', function(error,geojson) {
-    deps.selectAll("path")
+    fr_regions.selectAll("path")
         .data(geojson.features)
         .enter()
         .append("path")
         .attr('class', 'France_region')
+        .attr('id', function (data) {
+			    return "r" + data.properties.code;
+        })
         .attr("d", geopath)
         .on("mouseover", function(d) {
             div.transition()
@@ -87,13 +70,17 @@ function initHomepage(){
                 .style("left", "0px")
                 .style("top", "0px");
         });
-});
 
-  /*d3.json('regions-avant-redecoupage-2015.geojson', function(req, geojson) {
-    fr_regions.selectAll("path")
-        .data(geojson.features)
-        .enter()
-        .append("path")
-        .attr("d", path);
-});*/
+      });
+
+      // --- Navbar controllers initialize ----
+
+      $('.btn-expand-collapse').click(function(e) {
+      				$('.navbar-primary').toggleClass('collapsed');
+      });
+
+      $('.lowest-layer-nav').click(function(e) {
+        updateMeansMap($(this).text());
+      });
+
 }
