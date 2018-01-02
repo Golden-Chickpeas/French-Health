@@ -24,6 +24,9 @@ function resize() {
 }
 
 
+function updateMeansMap(){
+  alert("Updating means with :");
+}
 /**
 * A function to initialize homepage
 * Here is where we load France's regions map
@@ -57,19 +60,21 @@ function initHomepage(){
   		        .attr("height", height);
 
   // Append the group that will contain our paths
-  //var fr_regions = svg.append("g");
-  var deps=svg.append("g");
+  var fr_regions = svg.append("g");
 
   var div = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
   d3.json('data/regions-avant-redecoupage-2015.geojson', function(error,geojson) {
-    deps.selectAll("path")
+    fr_regions.selectAll("path")
         .data(geojson.features)
         .enter()
         .append("path")
         .attr('class', 'France_region')
+        .attr('id', function (data) {
+			    return "r" + data.properties.code;
+        })
         .attr("d", geopath)
         .on("mouseover", function(d) {
             div.transition()
@@ -87,13 +92,21 @@ function initHomepage(){
                 .style("left", "0px")
                 .style("top", "0px");
         });
-});
 
-  /*d3.json('regions-avant-redecoupage-2015.geojson', function(req, geojson) {
-    fr_regions.selectAll("path")
-        .data(geojson.features)
-        .enter()
-        .append("path")
-        .attr("d", path);
-});*/
+      });
+
+      // --- Navbar controllers initialize ----
+
+      $('.btn-expand-collapse').click(function(e) {
+      				$('.navbar-primary').toggleClass('collapsed');
+      });
+
+      // $('.top-layer-nav').click(function(e) {
+      //
+      //     document.getElementById('wrapper').style.display = "flex";
+      //     document.getElementById('home').style.display = "none";
+      //     document.getElementById('showSlides').style.display = "table";
+      // 				$('.navbar-primary').toggleClass('collapsed');
+      // });
+
 }

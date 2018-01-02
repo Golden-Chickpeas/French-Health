@@ -6,10 +6,10 @@
     <meta name="description" content="Page d'accueil">
     <meta name="author" content="VZ + TG">
     <title>Visualisation des données : Santé et habitudes alimentaires en France</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://d3js.org/queue.v1.min.js"></script>
@@ -24,32 +24,96 @@
 
 <body id="body">
 
-  <div class="container" >
-  	<div class= "titles_placeholder">
-  			<h1 id="main_title_placeholder"> Santé et Habitudes alimentaires en France</h1>
-  			<div>
-  				<h3 id="subtitle_placeholder"> Projet Visualisation des données </h3>
-  			</div>
-  	</div>
 
-  <div class = 'row'>
-    <div class="col-md-3">
-  	 An access menu ?
-    </div>
+    <nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <h2 class="navbar-brand">Santé et habitudes alimentaires en France</h2>
+          <a class="sub">(Projet Visualisation des Données - M2 IPAC - R)</a>
+        </div>
+      </div>
+    </nav>
 
-    <div class="col-md-6">
-        <div id='france_map'></div>
-    </div>
 
-    <div class="col-md-3">
-  	 A description here ? <br/>
-     A description here ? <br/>
-     A description here ? <br/>
-     A description here ? <br/>
-    </div>
-  </div>
+    <nav class="navbar navbar-primary dropright">
+      <a href="#" class="btn-expand-collapse"></a>
+      <ul class="navbar-primary-menu">
+        <li>
+          <div class="dropright nav-label top-layer-nav">
+            <span class="dropdown-toggle" data-toggle="dropdown">
+              Repas</span>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="tRepas">
+              <li><span class="lowest-layer-nav">Petit-déjeuner</span></li>
+              <li class="divider"></li>
+              <li><span class="lowest-layer-nav">Déjeuner</span></li>
+              <li class="divider"></li>
+              <li><span class="lowest-layer-nav">Dîner</span></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="dropright nav-label top-layer-nav">
+            <span class="dropdown-toggle" data-toggle="dropdown">
+              Eau</span>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="eau">
+                <li><span class="lowest-layer-nav">Whyyyyy ?1</span></li>
+                <li class="divider"></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="dropright nav-label top-layer-nav">
+            <span class="dropdown-toggle" data-toggle="dropdown">
+              Consommation alimentaire</span>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="tRepas">
+              <li><span class="lowest-layer-nav">Pain</span></li>
+              <li class="divider"></li>
+              <li><span class="lowest-layer-nav">Beurre</span></li>
+              <li class="divider"></li>
+              <li><span class="lowest-layer-nav">Viande</span></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="dropright nav-label top-layer-nav">
+            <span class="dropdown-toggle" data-toggle="dropdown">
+              Activité Physique</span>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="tRepas">
+              <li><span class="lowest-layer-nav">Est-ce nécessaire ?</span></li>
+              <li class="divider"></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+        <div class="dropright nav-label top-layer-nav">
+          <span class="dropdown-toggle" data-toggle="dropdown">
+            Poids</span>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="tRepas">
+            <li><span class="lowest-layer-nav">Est-ce nécessaire ?</span></li>
+            <li class="divider"></li>
+          </ul>
+        </div>
+        </li>
+      </ul>
 
-  </div>
+      <div class="dropdown-menu" id="dropd_menu_repas">
+        <button class="dropdown-item lowest-layer-nav" type="button">
+          Pains et céréales</button>
+      </div>
+    </nav>
+
+    <div id = 'container' class="main-content">
+      <div class="row">
+        <div id='france_map' class="col-md-6"></div>
+        <div id='description' class="col-md-4">
+          A description here ? <br/>
+           here ? <br/>
+            here ? <br/>
+             here ? <br/>
+        </div>
+      </div>
+   </div>
+
 
   <div class="footer">
         <div id="ul-logo" class="footlogo">
@@ -65,7 +129,6 @@
         </div>
     </div>
 
-</div>
 
 <script>
 initHomepage();
