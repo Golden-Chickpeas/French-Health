@@ -13,11 +13,13 @@ var region_num_to_postal_code_map={"1":"11",
 "10":"42","11":"43","12":"52","13":"53","14":"54","15":"72","16":"73",
 "17":"74","18":"82","19":"83","20":"91","21":"93"};
 
+var numberOfQuantiles = 6;
+
 function load_dataset(data, mappedCategory){
   // Define color scale
   var quantile = d3.scaleQuantile()
       .domain([d3.min(data, function (e) { return +e.mean_qte_brute; }), d3.max(data, function (e) { return +e.mean_qte_brute; })])
-      .range(d3.range(8));
+      .range(d3.range(numberOfQuantiles));
 
   //console.log(quantile)
   // Read data from csv and put it on the map
@@ -35,7 +37,7 @@ function load_dataset(data, mappedCategory){
                     });
     });
 
-    update_legend(quantile,4)
+    update_legend(quantile,numberOfQuantiles)
 }
 
 function update_legend(quantile_func,nb_quantiles){
@@ -72,15 +74,13 @@ function update_legend(quantile_func,nb_quantiles){
               					case 0 :
               						return "< " + Math.round(quantile_func.quantiles()[0]) + " " + unit;
               						break;
-              					case 1:
-              						return Math.round(quantile_func.quantiles()[0]) + " - " + Math.round(quantile_func.quantiles()[1]) + " "+ unit ;
+                                case nb_quantiles-1 :
+                                    return "> " + Math.round(quantile_func.quantiles()[nb_quantiles-2]) + " "+ unit;
+                                    break;
+              					default :
+              						return Math.round(quantile_func.quantiles()[d-1]) + " - " + Math.round(quantile_func.quantiles()[d]) + " "+ unit ;
               						break;
-              					case 2:
-              						return Math.round(quantile_func.quantiles()[1]) + " - " + Math.round(quantile_func.quantiles()[2]) + " "+ unit ;
-              						break;
-              					case 3 :
-              						return "> " + Math.round(quantile_func.quantiles()[2]) + " "+ unit;
-              						break;
+
               			  }
 
 			        })
