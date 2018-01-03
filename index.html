@@ -45,11 +45,11 @@
             <span class="dropdown-toggle" data-toggle="dropdown">
               Repas</span>
             <ul class="dropdown-menu" role="menu" aria-labelledby="tRepas">
-              <li><span class="lowest-layer-nav">Petit-déjeuner</span></li>
+              <li class="lowest-layer-nav ">Petit-déjeuner</li>
               <li class="divider"></li>
-              <li><span class="lowest-layer-nav">Déjeuner</span></li>
+              <li class="lowest-layer-nav">Déjeuner</li>
               <li class="divider"></li>
-              <li><span class="lowest-layer-nav">Dîner</span></li>
+              <li class="lowest-layer-nav">Dîner</li>
             </ul>
           </div>
         </li>
@@ -58,8 +58,8 @@
             <span class="dropdown-toggle" data-toggle="dropdown">
               Eau</span>
             <ul class="dropdown-menu" role="menu" aria-labelledby="eau">
-                <li><span class="lowest-layer-nav">Whyyyyy ?1</span></li>
-                <li class="divider"></li>
+                <li class="lowest-layer-nav">Whyyyyy ?1</li>
+                <!--<li class="divider"></li>-->
             </ul>
           </div>
         </li>
@@ -68,13 +68,13 @@
             <span class="dropdown-toggle" data-toggle="dropdown">
               Consommation alimentaire</span>
             <ul class="dropdown-menu" role="menu" aria-labelledby="tRepas">
-              <li><span class="lowest-layer-nav">Pain et panification</span></li>
+              <li class="lowest-layer-nav">Pain et panification</li>
               <li class="divider"></li>
-              <li><span class="lowest-layer-nav">Céréales pour petit déjeuner</span></li>
+              <li class="lowest-layer-nav">Céréales pour petit déjeuner</li>
               <li class="divider"></li>
-              <li><span class="lowest-layer-nav">Pâtisseries et gâteaux</span></li>
+              <li class="lowest-layer-nav">Pâtisseries et gâteaux</li>
               <li class="divider"></li>
-              <li><span class="lowest-layer-nav">Viande</span></li>
+              <li class="lowest-layer-nav">Viande</li>
             </ul>
           </div>
         </li>
@@ -83,8 +83,8 @@
             <span class="dropdown-toggle" data-toggle="dropdown">
               Activité Physique</span>
             <ul class="dropdown-menu" role="menu" aria-labelledby="tRepas">
-              <li><span class="lowest-layer-nav">Est-ce nécessaire ?</span></li>
-              <li class="divider"></li>
+              <li class="lowest-layer-nav">Est-ce nécessaire ?</li>
+              <!--<li class="divider"></li>-->
             </ul>
           </div>
         </li>
@@ -93,17 +93,12 @@
           <span class="dropdown-toggle" data-toggle="dropdown">
             Poids</span>
           <ul class="dropdown-menu" role="menu" aria-labelledby="tRepas">
-            <li><span class="lowest-layer-nav">Est-ce nécessaire ?</span></li>
-            <li class="divider"></li>
+            <li><span class="lowest-layer-nav">Est-ce nécessaire ?</li>
+            <!--<li class="divider"></li>-->
           </ul>
         </div>
         </li>
       </ul>
-
-      <div class="dropdown-menu" id="dropd_menu_repas">
-        <button class="dropdown-item lowest-layer-nav" type="button">
-          Pains et céréales</button>
-      </div>
     </nav>
 
     <div id = 'container' class="main-content">
@@ -128,6 +123,138 @@
    </div>
 
 
+    <div class="panel-group panel-filters" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+
+                        Filtrer les données
+                </h4>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading panel-heading-filters">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                        Genre</a>
+                </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse">
+                <ul class="list-group btn-group subpanel-filters" data-toggle="buttons">
+
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="sexe_option1" > Femme</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="sexe_option2" > Homme</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter active"><input type="radio" name="options" id="sexe_option3" checked> Tout sélectionner</li>
+            <!--<li class="list-group-item">Homme</li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading panel-heading-filters">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                        Revenus du foyer</a>
+                </h4>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse">
+                <ul class="list-group btn-group subpanel-filters" data-toggle="buttons">
+
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option1" >< 380 €/mois</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option2" >380 à moins de 530 €/mois</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option3" >530 à moins de 690 €/mois</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option4" >690 à moins de 840 €/mois</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option5" >840 à moins de 990 €/mois</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option6" >990 à moins de 1 300 €/mois</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option7" >1 300 à moins de 1 600 €/mois</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option8" >1 600 à moins de 1 900 €/mois</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option9" >1 900 à moins de 2 200 €/mois</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option10" >2 200 à moins de 2 500 €/mois</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option11" >2 500 à moins de 3 100 €/mois</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option12" >3 100 à moins de 4 600 €/mois</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option13" >+ de 4 600 €/mois</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option14" > ne sait pas</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option15" >[refus]</li>
+                    <li class="divider"></li>
+                    <li class="list-group-item btn btn-primary filter"><input type="radio" name="options" id="revenu_option15" checked> Tout sélectionner</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!--<nav class="navbar navbar-filters dropright">-->
+        <!--<a href="#" class="btn-expand-collapse"></a>-->
+         <!--<ul class="navbar-primary-menu">-->
+            <!--<li>-->
+                <!--<div class="dropright nav-label top-layer-nav">-->
+                    <!--<span class="dropdown-toggle" data-toggle="dropdown">-->
+                        <!--Genre</span>-->
+                    <!--<ul class="dropdown-menu" role="menu" aria-labelledby="tRepas">-->
+
+
+                        <!--<li><button class="navbar-btn">Femme</button></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><button class="navbar-btn">Homme</button></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<div class="dropright nav-label top-layer-nav">-->
+            <!--<span class="dropdown-toggle" data-toggle="dropdown">-->
+              <!--Revenus du foyer</span>-->
+                    <!--<ul class="dropdown-menu" role="menu" aria-labelledby="tRepas">-->
+                        <!--<li><span class="lowest-layer-nav">< 380 €/mois</span></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><span class="lowest-layer-nav">380 à moins de 530 €/mois</span></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><span class="lowest-layer-nav">530 à moins de 690 €/mois</span></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><span class="lowest-layer-nav">690 à moins de 840 €/mois</span></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><span class="lowest-layer-nav">840 à moins de 990 €/mois</span></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><span class="lowest-layer-nav">990 à moins de 1 300 €/mois</span></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><span class="lowest-layer-nav">1 300 à moins de 1 600 €/mois</span></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><span class="lowest-layer-nav">1 600 à moins de 1 900 €/mois</span></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><span class="lowest-layer-nav">1 900 à moins de 2 200 €/mois</span></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><span class="lowest-layer-nav">2 200 à moins de 2 500 €/mois</span></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><span class="lowest-layer-nav">2 500 à moins de 3 100 €/mois</span></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><span class="lowest-layer-nav">3 100 à moins de 4 600 €/mois</span></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><span class="lowest-layer-nav">+ de 4 600 €/mois</span></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><span class="lowest-layer-nav"> ne sait pas</span></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><span class="lowest-layer-nav">[refus]</span></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</nav>-->
+
+
   <div class="footer">
         <div id="ul-logo" class="footlogo">
           <span><img src="img/logos/ul-logo.png"></img></span>
@@ -145,6 +272,7 @@
 
 <script>
 initHomepage();
+$('.btn').button();
 </script>
 
 </body>
