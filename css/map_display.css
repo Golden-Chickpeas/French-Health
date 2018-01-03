@@ -1,14 +1,42 @@
-.blue_shades .q0 { fill:#cccce7}
-.blue_shades .q1 { fill:#7f7fc5}
-.blue_shades .q2 { fill:#3232a2}
-.blue_shades .q3 { fill:#000061}
+.France_region{
+    -webkit-transition: all 1s linear;
+    -moz-transition: all 1s linear;
+    -o-transition: all 1s linear;
+    transition: all 1s linear;
+}
+.dark_gold_shades .q0 { fill:#c7b98d}
+.dark_gold_shades .q1 { fill:#b6a46b}
+.dark_gold_shades .q2 { fill:#ae995a}
+.dark_gold_shades .q3 { fill:#a08c4e}
+.dark_gold_shades .q4 { fill:#8f7d46}
+.dark_gold_shades .q5 { fill:#896e1c}
+.dark_gold_shades .q6 { fill:#745d18}
+.dark_gold_shades .q7 { fill:#514110}
 
-.gold_shades .q0 { fill:#ab9d74}
-.gold_shades .q1 { fill:#8f7d46}
-.gold_shades .q2 { fill:#745d18}
-.gold_shades .q3 { fill:#514110}
+.blue_shades .q0 { fill:#ccccdf}
+.blue_shades .q1 { fill:#b2b2cf}
+.blue_shades .q2 { fill:#9999bf}
+.blue_shades .q3 { fill:#7f7fb0}
+.blue_shades .q4 { fill:#6666a0}
+.blue_shades .q5 { fill:#4c4c90}
+.blue_shades .q6 { fill:#323280}
+.blue_shades .q7 { fill:#191970}
 
-.grey_shades .q0 { fill:#cccccc}
-.grey_shades .q1 { fill:#999999}
-.grey_shades .q2 { fill:#737373}
-.grey_shades .q3 { fill:#595959}
+.light_gold_shades .q0 { fill:#f7e4b6}
+.light_gold_shades .q1 { fill:#f4d998}
+.light_gold_shades .q2 { fill:#f1d181}
+.light_gold_shades .q3 { fill:#efc86a}
+.light_gold_shades .q4 { fill:#ecc053}
+.light_gold_shades .q5 { fill:#eab73a}
+.light_gold_shades .q6 { fill:#e7ae22}
+.light_gold_shades .q7 { fill:#e5a50a}
+
+.grey_shades .q0 { fill:#d3d3d3}
+.grey_shades .q1 { fill:#bdbdbd}
+.grey_shades .q2 { fill:#a8a8a8}
+.grey_shades .q3 { fill:#939393}
+.grey_shades .q4 { fill:#7e7e7e}
+.grey_shades .q5 { fill:#696969}
+.grey_shades .q6 { fill:#545454}
+.grey_shades .q7 { fill:#3f3f3f}
+
