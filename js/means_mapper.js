@@ -17,7 +17,7 @@ function load_dataset(data, mappedCategory){
   // Define color scale
   var quantile = d3.scaleQuantile()
       .domain([d3.min(data, function (e) { return +e.mean_qte_brute; }), d3.max(data, function (e) { return +e.mean_qte_brute; })])
-      .range(d3.range(4));
+      .range(d3.range(8));
 
   //console.log(quantile)
   // Read data from csv and put it on the map
@@ -47,7 +47,7 @@ function updateMeansMap(category){
         var dsv=d3.dsvFormat(';');
         var data=dsv.parse(raw);
         load_dataset(data, "pains");});
-        $("#france_map svg").attr("class", "gold_shades");
+        $("#france_map svg").attr("class", "dark_gold_shades");
       break;
 
     case "céréales pour petit déjeuner":
@@ -56,7 +56,7 @@ function updateMeansMap(category){
         var dsv=d3.dsvFormat(';');
         var data=dsv.parse(raw);
         load_dataset(data, "cereales_pdej");});
-        $("#france_map svg").attr("class", "gold_shades");
+        $("#france_map svg").attr("class", "light_gold_shades");
       break;
 
     case "pâtisseries et gâteaux":
