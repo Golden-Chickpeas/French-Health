@@ -72,6 +72,9 @@ function initHomepage(){
         });
 
       });
+    $( window ).on( "load", function() {
+        $("#r94").attr("display","none"); //hiding Corsica for which we have no data
+    });
 
       // --- Navbar controllers initialize ----
 
@@ -82,5 +85,6 @@ function initHomepage(){
       $('.lowest-layer-nav').click(function(e) {
         updateMeansMap($(this).text());
       });
+
 
 }
