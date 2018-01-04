@@ -83,8 +83,17 @@ function initHomepage(){
       });
 
       $('.lowest-layer-nav').click(function(e) {
-        updateMeansMap($(this).text());
+          updateMeansMap($(this).text());
+          console.log($(this).text());
+          ApplyFilterToMap()
       });
 
-
+      $('.filter').click(function() {
+        var id = this.firstChild.id;
+        var id_splitted = id.split('_');
+        var filter_type = id_splitted[0];
+        var filter_option_number = id_splitted[2];
+        UpdateFilters(filter_type,filter_option_number);
+        ApplyFilterToMap()
+      });
 }
