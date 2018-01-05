@@ -22,14 +22,15 @@
 .blue_shades .q4 { fill:#323280}
 .blue_shades .q5 { fill:#191970}
 
-.light_gold_shades .q0 { fill:#f7e4b6}
-.light_gold_shades .q1 { fill:#f4d998}
+.light_gold_shades .q0 { fill: #fbf0a7
+}
+.light_gold_shades .q1 { fill:#f6e18e}
 /*.light_gold_shades .q2 { fill:#f1d181}*/
-.light_gold_shades .q2 { fill:#efc86a}
-.light_gold_shades .q3 { fill:#ecc053}
-.light_gold_shades .q4 { fill:#eab73a}
+.light_gold_shades .q2 { fill:#f0d275}
+.light_gold_shades .q3 { fill:#eac25c}
+.light_gold_shades .q4 { fill:#e2b440}
 /*.light_gold_shades .q6 { fill:#e7ae22}*/
-.light_gold_shades .q5 { fill:#e5a50a}
+.light_gold_shades .q5 { fill:#daa520}
 
 /*.grey_shades .q0 { fill:#d3d3d3}*/
 /*.grey_shades .q1 { fill:#bdbdbd}*/
@@ -40,3 +41,11 @@
 .grey_shades .q4 { fill:#545454}
 .grey_shades .q5 { fill:#3f3f3f}
 
+.red_shades .q0 { fill: #ffd59b}
+.red_shades .q1 { fill: #ffa474}
+.red_shades .q2 { fill: #f47461}
+.red_shades .q3 { fill: #db4551}
+.red_shades .q4 { fill: #b81b34}
+.red_shades .q5 { fill: #8b0000}
+
+/*Red shades obtained on https://gka.github.io/palettes/#colors=lightyellow,orange,deeppink,darkred|steps=4|bez=1|coL=1*/

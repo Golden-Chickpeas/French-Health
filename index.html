@@ -47,61 +47,52 @@
       <a href="#" class="btn-expand-collapse"></a>
       <ul class="navbar-primary-menu">
         <li>
-          <div class="dropright nav-label top-layer-nav">
-            <span class="dropdown-toggle" data-toggle="dropdown">
-              Repas</span>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="tRepas">
-              <li class="lowest-layer-nav ">Petit-déjeuner</li>
-              <li class="divider"></li>
-              <li class="lowest-layer-nav">Déjeuner</li>
-              <li class="divider"></li>
-              <li class="lowest-layer-nav">Dîner</li>
-            </ul>
+            <div class="nav-label top-layer-nav panel-heading collapsed" data-toggle="collapse" aria-expanded="false" href="#collapseRepas">
+                <!--<span class="dropdown-toggle" data-toggle="dropdown">-->
+              <span>Repas</span></div>
+                <div id="collapseRepas" class="mydropdown-menu panel-collapse collapse">
+                    <!--<ul class="list-group btn-group subpanel-filters" data-toggle="buttons">-->
+                    <ul role="menu" aria-labelledby="tRepas">
+                      <li class="lowest-layer-nav ">Petit-déjeuner</li>
+                      <li class="divider"></li>
+                      <li class="lowest-layer-nav">Déjeuner</li>
+                      <li class="divider"></li>
+                      <li class="lowest-layer-nav">Dîner</li>
+                    </ul>
+                </div>
           </div>
         </li>
         <li>
-          <div class="dropright nav-label top-layer-nav">
-            <span class="dropdown-toggle lowest-layer-nav" data-toggle="dropdown" aria-labelledby="eau">Eau</span>
-            <!--<ul class="dropdown-menu lowest-layer-nav" role="menu" aria-labelledby="eau"> Exau-->
-                <!--<li class="lowest-layer-nav">Eau</li></span>-->
-                <!--<li class="divider"></li>-->
-            <!--</ul>-->
+          <div class="nav-label top-layer-nav">
+            <span class="lowest-layer-nav">Eau</span>
           </div>
         </li>
         <li>
-          <div class="dropright nav-label top-layer-nav">
-            <span class="dropdown-toggle" data-toggle="dropdown">
-              Consommation alimentaire</span>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="tRepas">
-              <li class="lowest-layer-nav">Pain et panification</li>
-              <li class="divider"></li>
-              <li class="lowest-layer-nav">Céréales pour petit déjeuner</li>
-              <li class="divider"></li>
-              <li class="lowest-layer-nav">Pâtisseries et gâteaux</li>
-              <li class="divider"></li>
-              <li class="lowest-layer-nav">Viande</li>
-            </ul>
+
+          <div class="nav-label top-layer-nav panel-heading collapsed" data-toggle="collapse" href="#collapseConso">
+            <span>Consommation alimentaire</span></div>
+
+          <div id="collapseConso" class="mydropdown-menu panel-collapse collapse">
+              <ul role="menu" aria-labelledby="tRepas">
+                  <li class="lowest-layer-nav">Pain et panification</li>
+                  <li class="divider"></li>
+                  <li class="lowest-layer-nav">Céréales pour petit déjeuner</li>
+                  <li class="divider"></li>
+                  <li class="lowest-layer-nav">Pâtisseries et gâteaux</li>
+                  <li class="divider"></li>
+                  <li class="lowest-layer-nav">Viande</li>
+                </ul>
           </div>
         </li>
         <li>
-          <div class="dropright nav-label top-layer-nav">
-            <span class="dropdown-toggle" data-toggle="dropdown">
-              Activité Physique</span>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="tRepas">
-              <li class="lowest-layer-nav">Est-ce nécessaire ?</li>
-              <!--<li class="divider"></li>-->
-            </ul>
-          </div>
+            <div class="nav-label top-layer-nav">
+                <span class="lowest-layer-nav">Activité Physique</span>
+            </div>
         </li>
         <li>
-        <div class="dropright nav-label top-layer-nav">
-          <span class="dropdown-toggle" data-toggle="dropdown">
-            Poids</span>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="tRepas">
-            <li><span class="lowest-layer-nav">Est-ce nécessaire ?</li>
-            <!--<li class="divider"></li>-->
-          </ul>
-        </div>
+            <div class="nav-label top-layer-nav">
+                <span class="lowest-layer-nav">Poids</span>
+            </div>
         </li>
       </ul>
     </nav>

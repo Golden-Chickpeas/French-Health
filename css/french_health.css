@@ -92,7 +92,7 @@ path.France_region:hover{
   /*list-style: none;*/
 /*}*/
 
-.top-layer-nav span {
+.top-layer-nav span, .top-layer-nav div {
   display: block;
   padding: 10px 18px;
   text-align: left;
@@ -100,17 +100,21 @@ path.France_region:hover{
   color: #ccc;
 }
 
+
+.top-layer-nav.panel-heading{
+    padding: 0px;
+}
 .top-layer-nav span:hover {
   background-color: #000;
   text-decoration: none;
   color: white;
 }
 
-.dropdown-menu{
+.mydropdown-menu{
     background-color: #ffffffd6;
     width: 100%;
 }
-.dropdown-menu .divider{
+.mydropdown-menu .divider{
     margin: 3px 0px;
 }
 
@@ -134,9 +138,13 @@ path.France_region:hover{
   margin-left: 60px;
 }
 
-.lowest-layer-nav:hover , .top-layer-nav:hover , .France_region:hover {
+.lowest-layer-nav:hover , .top-layer-nav:hover .lowest-layer-nav , .France_region:hover {
     cursor: pointer;
 }
+
+/*.top-layer-nav:hover not .lowest-layer-nav{*/
+    /*cursor: auto;*/
+/*}*/
 
 /*** Filter menu ***/
 

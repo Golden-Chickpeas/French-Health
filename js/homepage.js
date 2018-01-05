@@ -84,9 +84,28 @@ function initHomepage(){
       });
 
       $('.lowest-layer-nav').click(function(e) {
-          updateMeansMap($(this).text());
+        $this = this;
+        $('.top-layer-nav').filter(".panel-heading").each(function (value) {
+          potentialParent = this.nextElementSibling;
+          if (!$(this).hasClass("collapsed") & $(potentialParent).has($this).length!=1) {
+            console.log("should click here")
+            this.click();
+          }
+          });
+
+        updateMeansMap($(this).text());
           console.log($(this).text());
           ApplyFilterToMap()
+      });
+
+      $('.top-layer-nav').filter(".panel-heading").on('mouseenter',function(e) {
+        // console.log(this)
+        if ($(this).hasClass("collapsed")) {
+          $(this).click();
+          $('.top-layer-nav').filter(".panel-heading").not(this).not(".collapsed").click();
+
+        }
+
       });
 
       $('.filter').click(function() {
