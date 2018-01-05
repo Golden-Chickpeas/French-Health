@@ -98,6 +98,13 @@ function updateMeansMap(category){
   var category_mapped;
   var color_scale;
   switch(category){
+    case "eau":
+      file_path= "data/csv/foodgrp_conso_means/conso_of_codgr_31.csv";
+      category_mapped = "eau";
+      color_scale = "blue_shades";
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
     case "pain et panification":
       file_path= "data/csv/foodgrp_conso_means/conso_of_codgr_1.csv";
       category_mapped = "pains";
