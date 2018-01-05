@@ -48,7 +48,7 @@ for tyrep in range(1,7):
 
     df_regions['entries_num'] = entries_number_region
     df_regions['indiv_num'] = indiv_number_for_region
-    df_regions['mean_duree'] = mean_duree_by_region
+    df_regions['mean'] = mean_duree_by_region
 
     file_path = os.path.join('..','csv','duree_repas_mean')
     file_name = 'duree_repas_mean_of_tyrep_'+type_repas[tyrep-1]+'.csv'
@@ -88,7 +88,7 @@ for sexe_ps in range(1, 3):
 
             df_regions['entries_num'] = entries_number_region
             df_regions['indiv_num'] = indiv_number_for_region
-            df_regions['mean_duree'] = mean_duree_by_region
+            df_regions['mean'] = mean_duree_by_region
 
             file_path = os.path.join('..', 'csv', 'duree_repas_mean')
             file_name = 'duree_repas_mean_of_tyrep_' + type_repas[tyrep - 1] + '_of_sexe_' + str(
@@ -119,7 +119,7 @@ for revenu_foyer in range(1, 16):
 
         df_regions['entries_num'] = entries_number_region
         df_regions['indiv_num'] = indiv_number_for_region
-        df_regions['mean_duree'] = mean_duree_by_region
+        df_regions['mean'] = mean_duree_by_region
 
         file_path = os.path.join('..', 'csv', 'duree_repas_mean')
         file_name = 'duree_repas_mean_of_tyrep_' + type_repas[tyrep - 1] + '_of_revenu_foyer_' + str(revenu_foyer) + '.csv'
@@ -149,7 +149,7 @@ for sexe_ps in range(1, 3):
 
         df_regions['entries_num'] = entries_number_region
         df_regions['indiv_num'] = indiv_number_for_region
-        df_regions['mean_duree'] = mean_duree_by_region
+        df_regions['mean'] = mean_duree_by_region
 
         file_path = os.path.join('..', 'csv', 'duree_repas_mean')
         file_name = 'duree_repas_mean_of_tyrep_' + type_repas[tyrep - 1] + '_of_sexe_' + str(

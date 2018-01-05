@@ -1,4 +1,4 @@
-;reg_code;reg_name;entries_num;indiv_num;mean_qte_brute
+;reg_code;reg_name;entries_num;indiv_num;mean
 0;1;Région Parisienne;70;8;93.3857142857
 1;2;Champagne;28;2;100.892857143
 2;3;Picardie;15;4;70.3333333333

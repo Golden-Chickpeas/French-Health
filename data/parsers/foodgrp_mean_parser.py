@@ -47,7 +47,7 @@ for ind in range(1,45):
 
     df_regions['entries_num']=entries_number_region
     df_regions['indiv_num']=indiv_number_for_region
-    df_regions['mean_qte_brute']=mean_qte_brute_by_region
+    df_regions['mean']=mean_qte_brute_by_region
 
     file_name='../csv/foodgrp_conso_means/conso_of_codgr_'+str(ind)+'.csv'
     df_regions.to_csv(file_name, sep=';')
@@ -87,7 +87,7 @@ for sexe_ps in range(1, 3):
 
             df_regions['entries_num']=entries_number_region
             df_regions['indiv_num']=indiv_number_for_region
-            df_regions['mean_qte_brute']=mean_qte_brute_by_region
+            df_regions['mean']=mean_qte_brute_by_region
 
             file_path = os.path.join('..', 'csv', 'foodgrp_conso_means')
             file_name = 'conso_of_codgr_' +str(ind) + '_of_sexe_' + str(
@@ -121,7 +121,7 @@ for revenu_foyer in range(1, 16):
 
         df_regions['entries_num']=entries_number_region
         df_regions['indiv_num']=indiv_number_for_region
-        df_regions['mean_qte_brute']=mean_qte_brute_by_region
+        df_regions['mean']=mean_qte_brute_by_region
 
         file_path = os.path.join('..', 'csv', 'foodgrp_conso_means')
         file_name = 'conso_of_codgr_' +str(ind) + '_of_revenu_foyer_' + str(revenu_foyer) + '.csv'
@@ -155,7 +155,7 @@ for sexe_ps in range(1, 3):
 
         df_regions['entries_num']=entries_number_region
         df_regions['indiv_num']=indiv_number_for_region
-        df_regions['mean_qte_brute']=mean_qte_brute_by_region
+        df_regions['mean']=mean_qte_brute_by_region
 
         file_path = os.path.join('..', 'csv', 'foodgrp_conso_means')
         file_name = 'conso_of_codgr_' +str(ind) + '_of_sexe_' + str(
