@@ -8,15 +8,15 @@
 	list-style: none;
 }
 
-div.tooltip {
+#regionTooltip {
     position: absolute;
     text-align: center;
     color: black;
     width: 275px;
-    height: 37px;
+    /*height: 37px;*/
     padding: 2px;
     font: 12px sans-serif;
-    background: grey;
+    background: #dad3d6;
     border: 0px;
     border-radius: 8px;
     pointer-events: none;

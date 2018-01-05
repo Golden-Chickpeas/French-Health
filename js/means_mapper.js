@@ -28,6 +28,11 @@ function display_dataset(data, mappedCategory){
   //console.log(quantile)
   // Read data from csv and put it on the map
 
+    var regionTooltip = d3.select("#regionTooltip");
+
+    //Data units default
+    var unit = "g/jour";
+
     data.forEach(function (e, i) { // For each item in the csv file
           // console.log(e);
           // // console.log(e.reg_code);
@@ -35,10 +40,23 @@ function display_dataset(data, mappedCategory){
 
           //Select a region in the map, we need a correct code for that
           d3.select("#r" + region_num_to_postal_code_map[e.reg_code])
-                .attr("class", function (d) {
-                        //console.log(quantile(+e.mean_qte_brute));
-                        return "France_region q" + quantile(+e.mean_qte_brute);
-                    });
+            .attr("class", function (d) {
+              //console.log(quantile(+e.mean_qte_brute));
+              return "France_region q" + quantile(+e.mean_qte_brute);
+            })
+            .on("mouseover", function(d) {
+              regionTooltip.transition()
+                  .duration(200)
+                  .style("opacity", .8);
+              regionTooltip.html(" <b> Région </b> : " + d.properties.nom
+                +"<br>"+
+                "Nombre d'individus concernés :"+ e.indiv_num
+                +"<br>"+
+                "Valeur précise :"+ parseFloat(e.mean_qte_brute).toFixed(2)
+              )
+                  .style("left", (d3.event.pageX + 30) + "px")
+                  .style("top", (d3.event.pageY - 30) + "px")
+              })
     });
 
     update_legend(quantile,numberOfQuantiles)
@@ -201,14 +219,33 @@ function ApplyFilterToMap(){
             else {
                 var dsv = d3.dsvFormat(';');
                 var data = dsv.parse(raw);
+
+                var regionTooltip = d3.select("#regionTooltip");
                 data.forEach(function (e, i) { // For each item in the csv file
+                    // console.log(e);
+                    // // console.log(e.reg_code);
+                    // console.log(region_num_to_postal_code_map[e.reg_code]);
+
                     //Select a region in the map, we need a correct code for that
                     d3.select("#r" + region_num_to_postal_code_map[e.reg_code])
                         .attr("class", function (d) {
                             //console.log(quantile(+e.mean_qte_brute));
-                            return "France_region q" + window.quantile(+e.mean_qte_brute);
-                        });
-                });
+                            return "France_region q" + quantile(+e.mean_qte_brute);
+                        })
+                        .on("mouseover", function(d) {
+                            regionTooltip.transition()
+                                .duration(200)
+                                .style("opacity", .8);
+                              regionTooltip.html(" <b> Région </b> : " + d.properties.nom
+                                +"<br>"+
+                                "Nombre d'individus concernés :"+ e.indiv_num
+                                +"<br>"+
+                                "Valeur précise :"+ parseFloat(e.mean_qte_brute).toFixed(2)
+                              )
+                                .style("left", (d3.event.pageX + 30) + "px")
+                                .style("top", (d3.event.pageY - 30) + "px")
+                        })
+                  });
             }
         });
 }

@@ -40,9 +40,10 @@ function initHomepage(){
   // Append the group that will contain our paths
   var fr_regions = svg.append("g");
 
-  var div = d3.select("body").append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
+  var regionTooltip = d3.select("body").append("div")
+    .attr("class", "tooltip ")
+    // .style("opacity", 0)
+    .attr("id","regionTooltip");
 
   d3.json('data/regions-avant-redecoupage-2015.geojson', function(error,geojson) {
     fr_regions.selectAll("path")
@@ -55,18 +56,18 @@ function initHomepage(){
         })
         .attr("d", geopath)
         .on("mouseover", function(d) {
-            div.transition()
+          regionTooltip.transition()
                 .duration(200)
                 .style("opacity", .8);
-            div.html(" <b> Région </b> : " + d.properties.nom)
+          regionTooltip.html(" <b> Région </b> : " + d.properties.nom)
                 .style("left", (d3.event.pageX + 30) + "px")
                 .style("top", (d3.event.pageY - 30) + "px")
         })
         .on("mouseout", function(d) {
-            div.transition()
+          regionTooltip.transition()
                 .duration(500)
                 .style("opacity", 0);
-            div.html("")
+          regionTooltip.html("")
                 .style("left", "0px")
                 .style("top", "0px");
         });
