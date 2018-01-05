@@ -18,11 +18,11 @@ window.loaded_file_path;
 window.loaded_filters=["",""];
 window.quantile;
 
-function display_dataset(data, mappedCategory){
+function display_dataset(data, unit){
 
   // Define color scale
   window.quantile = d3.scaleQuantile()
-      .domain([d3.min(data, function (e) { return +e.mean_qte_brute; }), d3.max(data, function (e) { return +e.mean_qte_brute; })])
+      .domain([d3.min(data, function (e) { return +e.mean; }), d3.max(data, function (e) { return +e.mean; })])
       .range(d3.range(numberOfQuantiles));
 
   //console.log(quantile)
@@ -30,8 +30,6 @@ function display_dataset(data, mappedCategory){
 
     var regionTooltip = d3.select("#regionTooltip");
 
-    //Data units default
-    var unit = "g/jour";
 
     data.forEach(function (e, i) { // For each item in the csv file
           // console.log(e);
@@ -41,8 +39,8 @@ function display_dataset(data, mappedCategory){
           //Select a region in the map, we need a correct code for that
           d3.select("#r" + region_num_to_postal_code_map[e.reg_code])
             .attr("class", function (d) {
-              //console.log(quantile(+e.mean_qte_brute));
-              return "France_region q" + quantile(+e.mean_qte_brute);
+              //console.log(quantile(+e.mean));
+              return "France_region q" + quantile(+e.mean);
             })
             .on("mouseover", function(d) {
               regionTooltip.transition()
@@ -52,17 +50,17 @@ function display_dataset(data, mappedCategory){
                 +"<br>"+
                 "Nombre d'individus concernés :"+ e.indiv_num
                 +"<br>"+
-                "Valeur précise :"+ parseFloat(e.mean_qte_brute).toFixed(2)
+                "Valeur précise :"+ parseFloat(e.mean).toFixed(2)
               )
                   .style("left", (d3.event.pageX + 30) + "px")
                   .style("top", (d3.event.pageY - 30) + "px")
               })
     });
 
-    update_legend(quantile,numberOfQuantiles)
+    update_legend(quantile,numberOfQuantiles, unit)
 }
 
-function update_legend(quantile_func,nb_quantiles){
+function update_legend(quantile_func,nb_quantiles, unit){
   // Delete the previous legend (if there is none, nothing happens)
     d3.select('#legend').remove();
   var width=800; var height=600;
@@ -70,9 +68,6 @@ function update_legend(quantile_func,nb_quantiles){
     var legend = d3.select('svg').append("g")
              .attr("transform", "translate(" + Math.round((width / 2) + width * 0.2) + ", " + Math.round(height / 2) + ")")
             .attr("id", "legend");
-
-  //Data units default
-  var unit = "g/jour";
 
   legend.selectAll(".colorbar")
         .data(d3.range(nb_quantiles))
@@ -116,23 +111,44 @@ function updateMeansMap(category){
   var category_mapped;
   var color_scale;
   switch(category){
+    case "petit-déjeuner":
+      file_path= "data/csv/duree_repas_mean/duree_repas_mean_of_tyrep_Petit-dejeuner.csv";
+      category_mapped = "minutes";
+      color_scale = "dark_gold_shades";
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
+    case "déjeuner":
+      file_path= "data/csv/duree_repas_mean/duree_repas_mean_of_tyrep_Dejeuner.csv";
+      category_mapped = "minutes";
+      color_scale = "dark_gold_shades";
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
+    case "dîner":
+      file_path= "data/csv/duree_repas_mean/duree_repas_mean_of_tyrep_Diner.csv";
+      category_mapped = "minutes";
+      color_scale = "dark_gold_shades";
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
     case "eau":
       file_path= "data/csv/foodgrp_conso_means/conso_of_codgr_31.csv";
-      category_mapped = "eau";
+      category_mapped = "mL/jour";
       color_scale = "blue_shades";
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
     case "pain et panification":
       file_path= "data/csv/foodgrp_conso_means/conso_of_codgr_1.csv";
-      category_mapped = "pains";
+      category_mapped = "g/jour";
       color_scale = "dark_gold_shades";
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
     case "céréales pour petit déjeuner":
       file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_2.csv";
-      category_mapped = "cereales_pdej";
+      category_mapped = "g/jour";
       color_scale = "light_gold_shades";
       load_dataset(file_path,category_mapped,color_scale);
 
@@ -146,16 +162,16 @@ function updateMeansMap(category){
 
     case "pâtisseries et gâteaux":
       file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_8.csv";
-      category_mapped = "patisserie";
+      category_mapped = "g/jour";
       color_scale = "grey_shades";
       load_dataset(file_path,category_mapped,color_scale);
-      //
-      // d3.text(filePath,
-      // function (error, raw) { if (error) alert(error);
-      //   var dsv=d3.dsvFormat(';');
-      //   var data=dsv.parse(raw);
-      //   display_dataset(data, "patisserie");});
-      //   $("#france_map svg").attr("class", "grey_shades");
+      break;
+
+    case "viande":
+      file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_17.csv";
+      category_mapped = "g/jour";
+      color_scale = "red_shades";
+      load_dataset(file_path,category_mapped,color_scale);
       break;
 
     default:
@@ -229,8 +245,8 @@ function ApplyFilterToMap(){
                     //Select a region in the map, we need a correct code for that
                     d3.select("#r" + region_num_to_postal_code_map[e.reg_code])
                         .attr("class", function (d) {
-                            //console.log(quantile(+e.mean_qte_brute));
-                            return "France_region q" + quantile(+e.mean_qte_brute);
+                            //console.log(quantile(+e.mean));
+                            return "France_region q" + quantile(+e.mean);
                         })
                         .on("mouseover", function(d) {
                             regionTooltip.transition()
@@ -240,7 +256,7 @@ function ApplyFilterToMap(){
                                 +"<br>"+
                                 "Nombre d'individus concernés :"+ e.indiv_num
                                 +"<br>"+
-                                "Valeur précise :"+ parseFloat(e.mean_qte_brute).toFixed(2)
+                                "Valeur précise :"+ parseFloat(e.mean).toFixed(2)
                               )
                                 .style("left", (d3.event.pageX + 30) + "px")
                                 .style("top", (d3.event.pageY - 30) + "px")
