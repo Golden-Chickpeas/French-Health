@@ -7,6 +7,11 @@
 */
 //HISTORY : January 1st 2018 - Initial design and coding (@vz-chameleon)
 
+var geopath;
+var fr_regions;
+var svg;
+var width = $(window).width();
+var height = $(window).height();
 
 /**
 * A function to initialize homepage
@@ -14,14 +19,10 @@
 */
 function initHomepage(){
 
-  var width = $(window).width();
-  var height = $(window).height();
-
-
   //------- FRANCE'S MAP SET UP (OLD REGIONS, before 2015) ------
 
   // Create a path object to manipulate geoJSON data
-  var geopath = d3.geoPath();
+  geopath = d3.geoPath();
 
   // Define projection property
   var projection = d3.geoConicConformal() // Lambert-93
@@ -32,13 +33,13 @@ function initHomepage(){
   geopath.projection(projection); // Assign projection to path object
 
   // Add svg HTML tag to DOM
-  var svg = d3.select('#france_map').append("svg")
+  svg = d3.select('#france_map').append("svg")
   		        .attr("id", "svg")
-  		        .attr("width",width)
+  		        .attr("width",width/3)
   		        .attr("height", height/1.4);
 
   // Append the group that will contain our paths
-  var fr_regions = svg.append("g");
+  fr_regions = svg.append("g");
 
   var regionTooltip = d3.select("body").append("div")
     .attr("class", "tooltip ")
