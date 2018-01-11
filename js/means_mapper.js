@@ -6,7 +6,6 @@
 * @author Valentina Zelaya & Timothy Garwood
 * @version 1.0
 */
-//HISTORY : January 1st 2018 - Initial design and coding (@vz-chameleon)
 
 var region_num_to_postal_code_map={"1":"11",
 "2":"21","3":"22","4":"23","5":"24","6":"25","7":"26","8":"31","9":"41",
@@ -54,6 +53,9 @@ function display_dataset(data, unit){
               )
                   .style("left", (d3.event.pageX + 30) + "px")
                   .style("top", (d3.event.pageY - 30) + "px")
+              })
+              .on("click", function(d){
+                 load_region_data(6)
               })
     });
 
