@@ -13,9 +13,12 @@ var region_num_to_postal_code_map={"1":"11",
 "17":"74","18":"82","19":"83","20":"91","21":"93"};
 
 var numberOfQuantiles = 6;
+var centered;
+
 window.loaded_file_path;
 window.loaded_filters=["",""];
 window.quantile;
+
 
 function display_dataset(data, unit){
 
@@ -55,7 +58,7 @@ function display_dataset(data, unit){
                   .style("top", (d3.event.pageY - 30) + "px")
               })
               .on("click", function(d){
-                 load_region_data(6)
+                 goto_region(d)
               })
     });
 
@@ -189,7 +192,7 @@ function load_dataset(file_path, category_mapped, color_scale) {
         function (error, raw) { if (error) alert(error);
             var dsv=d3.dsvFormat(';');
             var data=dsv.parse(raw);
-            console.log(window.loaded_file_path);
+            // console.log(window.loaded_file_path);
             display_dataset(data, category_mapped);});
     $("#france_map svg").attr("class", color_scale);
 }
@@ -229,7 +232,7 @@ function ApplyFilterToMap(){
 
     var new_file_path = currently_loaded_file.substr(0,currently_loaded_file.length-4)+loaded_filters[0]+loaded_filters[1]+".csv";
 
-    console.log("new filepath"+new_file_path);
+    // console.log("new filepath"+new_file_path);
 
     d3.text(new_file_path,
         function (error, raw) {

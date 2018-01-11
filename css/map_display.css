@@ -4,6 +4,7 @@
     -o-transition: all .75s linear;
     transition: all .75s linear;
 }
+
 .dark_gold_shades .q0 { fill:#c7b98d}
 .dark_gold_shades .q1 { fill:#b6a46b}
 .dark_gold_shades .q2 { fill:#ae995a}
