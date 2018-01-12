@@ -164,22 +164,54 @@ function load_circle_packing(data_file_path){
         var transition = d3.transition()
           .duration(d3.event.altKey ? 7500 : 750)
           .tween("zoom", function(d) {
-          var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2 + margin]);
-          return function(t) { zoomTo(i(t)); };
-        });
+            var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2 + margin]);
+            return function(t) { zoomTo(i(t)); };
+          });
 
         transition.selectAll("text")
-          .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
-          .style("fill-opacity", function(d) { return d.parent === focus ? 1 : 0; })
-          .on("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
+          .filter(function(d) { return d.parent === focus || (d.height===0) || this.style.display === "inline"; })
+          .style("fill-opacity", function(d) { return ((d.parent === focus) || (d === focus & d.height===0))? 1 : 0; })
+          .on("start", function(d) {
+            if (d.parent === focus)
+              this.style.display = "inline";
+            if(d === focus0 & d.height===0) {
+              removeDetails(this);
+              if (d.parent !== focus)
+                this.style.display = "none";
+            }
+          })
           .on("end", function(d) {
-            if (d.parent !== focus) this.style.display = "none";
+            if (d.parent !== focus)
+              this.style.display = "none";
             else{
-              // this.text = this.text + "\n" + d.data.size;
-              this.style.display="inline";
+              this.style.display = "inline";
+            }
+
+            if(d === focus & d.height===0){
+              addDetails(this,d);
+              this.style.display = "inline";
             }
           });
-        }
+      }
+
+      function addDetails(textNode,d){
+        d3.select(textNode.firstChild)
+          .attr("dy", "-100");
+
+        d3.select(textNode).append("tspan")
+          .text(d.data.size)
+          .attr("text-anchor", "middle")
+          .attr("style", "font-weight: bold;" +
+            "font-size: 50px;")
+          .attr("y", "25")
+          .attr("x", 0);
+      }
+
+      function removeDetails(textNode){
+        textNode.removeChild(textNode.lastChild);
+        d3.select(textNode.firstChild)
+          .attr("dy", "0");
+      }
 
       function zoomTo(v) {
         var k = diameter / v[2]; view = v;
