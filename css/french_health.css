@@ -22,6 +22,10 @@
     pointer-events: none;
 }
 
+#week_circle_pack{
+	width:500px
+	height:600px
+}
 path.France_region:hover{
   fill: green;
 }

@@ -35,7 +35,7 @@ for reg in range(1,22):
         for day in range(1,8):
             day_conso=df_consoreg.loc[(df_consoreg['nojour'] == day)]
             day_dict={}
-            day_dict["name"]=str(day)+"e jour enregistrement"
+            day_dict["name"]=str(day)+"e jour"
 
             foodsougrp_list=[]
             for foodsougrp in np.unique(day_conso["sougr"].values):
