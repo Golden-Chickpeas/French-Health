@@ -84,6 +84,8 @@ function goto_region(d,reg_num){
       .attr("d", geopath)
       .style("stroke-width", 1.5 / k + "px")
       .style("fill", "#99ff99");
+
+  display_meal_timeline(1);
 }
 
 
