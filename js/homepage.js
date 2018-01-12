@@ -35,8 +35,8 @@ function initHomepage(){
   // Add svg HTML tag to DOM
   svg = d3.select('#france_map').append("svg")
   		        .attr("id", "svg")
-  		        .attr("width",width/3)
-  		        .attr("height", height/1.4);
+  		        .attr("width",width/2.4)
+  		        .attr("height", height);
 
   // Append the group that will contain our paths
   fr_regions = svg.append("g");
