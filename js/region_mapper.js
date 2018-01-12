@@ -15,6 +15,7 @@ function openTab(tabName) {
     for (i = 0; i < x.length; i++) {
         x[i].style.display = "none";
     }
+    console.log(tabName);
     document.getElementById(tabName).style.display = "block";
 }
 
@@ -45,16 +46,21 @@ function goto_region(d,reg_num){
     // Create displayable visualisations on viusalisation access tabs
 
     // First tab : circle packing
-    region_foodgrp_data='data/json/foodgrp_sougrp_conso_week/region'+reg_num+'/consos_grp_'+window.selected_foodgrp+'_region_'+reg_num+'.json'
-    load_circle_packing(region_foodgrp_data)
+    region_foodgrp_hierarchy_data='data/json/foodgrp_sougrp_conso_week/region'+reg_num+'/consos_grp_'+window.selected_foodgrp+'_region_'+reg_num+'.json'
+    load_circle_packing(region_foodgrp_hierarchy_data)
 
     //Second tab : Icicle
+    region_foodgrp_partition_data='data/json/foodgrp_conso_partition/region'+reg_num+'/consos_partition_'+window.selected_foodgrp+'_region_'+reg_num+'.json'
+    load_icicle(region_foodgrp_partition_data)
+
 
   } else {
     x = width / 3.2;
     y = height / 1.4;
     k = 1;
     centered = null;
+    closeVisualisation('week_circle_pack')
+    displayVisualisationAccessBar(false)
   }
 
   fr_regions.selectAll("path")
@@ -77,7 +83,6 @@ function load_circle_packing(data_file_path){
 
     var svg = d3.select("#week_circle_pack").append("svg")
     .attr("id", "circle_pack") .attr("width",width/3.4) .attr("height",height/1.4),
-
     margin = 2,
     diameter = +svg.attr("width"),
     g = svg.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
@@ -182,4 +187,60 @@ function load_circle_packing(data_file_path){
         circle.attr("r", function(d) { return d.r * k; });
       }
     });
+}
+
+
+function load_icicle(data_file_path){
+
+  var svg = d3.select("#icicle").append("svg")
+  .attr("id", "icicle") .attr("width",width/3.4) .attr("height",height/1.4);
+
+    var rect = svg.selectAll("rect");
+
+    var x = d3.scaleLinear()
+    .range([0, width]);
+
+    var y = d3.scaleLinear()
+        .range([0, height]);
+
+    var color = d3.scaleOrdinal(d3.schemeCategory20c);
+
+    var partition = d3.partition()
+        .size([width, height])
+        .padding(0)
+        .round(true);
+
+    d3.json(data_file_path, function(error, root) {
+      if (error) throw error;
+
+      root = d3.hierarchy(d3.entries(root)[0], function(d) {
+          return d3.entries(d.value)
+        })
+        .sum(function(d) { return d.value })
+        .sort(function(a, b) { return b.value - a.value; });
+
+      partition(root);
+
+      rect = rect
+          .data(root.descendants())
+        .enter().append("rect")
+          .attr("x", function(d) { return d.x0; })
+          .attr("y", function(d) { return d.y0; })
+          .attr("width", function(d) { return d.x1 - d.x0; })
+          .attr("height", function(d) { return d.y1 - d.y0; })
+          .attr("fill", function(d) { return color((d.children ? d : d.parent).data.key); })
+          .on("click", clicked);
+    });
+
+    function clicked(d) {
+      x.domain([d.x0, d.x1]);
+      y.domain([d.y0, height]).range([d.depth ? 20 : 0, height]);
+
+      rect.transition()
+          .duration(750)
+          .attr("x", function(d) { return x(d.x0); })
+          .attr("y", function(d) { return y(d.y0); })
+          .attr("width", function(d) { return x(d.x1) - x(d.x0); })
+          .attr("height", function(d) { return y(d.y1) - y(d.y0); });
+    }
 }
