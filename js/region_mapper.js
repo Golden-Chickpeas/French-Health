@@ -8,9 +8,26 @@
 */
 
 
-function goto_region(d,reg_num){
-  console.log(region_num_to_postal_code_map);
+// Hide all elements with class="containerTab", except for the one that matches the clickable grid column
+function openTab(tabName) {
+    var i, x;
+    x = document.getElementsByClassName("containerTab");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    document.getElementById(tabName).style.display = "block";
+}
 
+function displayVisualisationAccessBar(show){
+  if (show) document.getElementById("visu_accesser").style.display = "block";
+  else  document.getElementById("visu_accesser").style.display = "none";
+}
+
+function closeVisualisation(tabName){
+  document.getElementById(tabName).style.display='none';
+}
+
+function goto_region(d,reg_num){
   var x, y, k;
 
   if (d && centered !== d) {
@@ -21,8 +38,18 @@ function goto_region(d,reg_num){
     // y = d3.event.pageY;
     k = 3;
     centered = d;
+
+    //  When a region is clicked display visualisation bar
+    displayVisualisationAccessBar(true);
+
+    // Create displayable visualisations on viusalisation access tabs
+
+    // First tab : circle packing
     region_foodgrp_data='data/json/foodgrp_sougrp_conso_week/region'+reg_num+'/consos_grp_'+window.selected_foodgrp+'_region_'+reg_num+'.json'
-     load_circle_packing(region_foodgrp_data)
+    load_circle_packing(region_foodgrp_data)
+
+    //Second tab : Icicle
+
   } else {
     x = width / 3.2;
     y = height / 1.4;
@@ -49,9 +76,9 @@ function load_circle_packing(data_file_path){
     d3.select('#circle_pack').remove();
 
     var svg = d3.select("#week_circle_pack").append("svg")
-    .attr("id", "circle_pack") .attr("width",width/3) .attr("height",height/1.4),
+    .attr("id", "circle_pack") .attr("width",width/3.4) .attr("height",height/1.4),
 
-    margin = 10,
+    margin = 2,
     diameter = +svg.attr("width"),
     g = svg.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
