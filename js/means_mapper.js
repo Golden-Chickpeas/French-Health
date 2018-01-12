@@ -18,6 +18,7 @@ var centered;
 window.loaded_file_path;
 window.loaded_filters=["",""];
 window.quantile;
+window.selected_foodgrp;
 
 
 function display_dataset(data, unit){
@@ -58,7 +59,7 @@ function display_dataset(data, unit){
                   .style("top", (d3.event.pageY - 30) + "px")
               })
               .on("click", function(d){
-                 goto_region(d)
+                 goto_region(d,e.reg_code)
               })
     });
 
@@ -148,6 +149,7 @@ function updateMeansMap(category){
       file_path= "data/csv/foodgrp_conso_means/conso_of_codgr_1.csv";
       category_mapped = "g/jour";
       color_scale = "dark_gold_shades";
+      window.selected_foodgrp=1;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -155,6 +157,7 @@ function updateMeansMap(category){
       file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_2.csv";
       category_mapped = "g/jour";
       color_scale = "light_gold_shades";
+      window.selected_foodgrp=2;
       load_dataset(file_path,category_mapped,color_scale);
 
       //   d3.text(filePath,
@@ -169,6 +172,7 @@ function updateMeansMap(category){
       file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_8.csv";
       category_mapped = "g/jour";
       color_scale = "grey_shades";
+      window.selected_foodgrp=8;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -176,6 +180,7 @@ function updateMeansMap(category){
       file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_17.csv";
       category_mapped = "g/jour";
       color_scale = "red_shades";
+      window.selected_foodgrp=17;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
