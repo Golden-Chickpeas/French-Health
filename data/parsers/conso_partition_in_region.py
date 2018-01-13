@@ -29,7 +29,7 @@ for reg in range(1,22):
 
         # JSON for partition is simpler than JSON for hierarchy :)
         data = {}
-        foodgrp_dict= {}
+
         foodsougrp_dict={}
         foodgrp_name=""
         for foodsougrp in np.unique(df_consoreg["sougr"].values):
@@ -50,12 +50,11 @@ for reg in range(1,22):
 
             foodsougrp_dict[sougrp_name]=conso_codal
 
-        foodgrp_dict[foodgrp_name] = foodsougrp_dict
-        data['region_'+str(reg)+'_partitions_foodgrp_'+str(foodgrp)] = foodgrp_dict
+        data[foodgrp_name] =  foodsougrp_dict
 
 
         file_path = os.path.join('..', 'json', 'foodgrp_conso_partition','region'+str(reg))
-        file_name = 'consos_paritition_'+str(foodgrp)+'_region_'+str(reg)+'.json'
+        file_name = 'consos_partition_'+str(foodgrp)+'_region_'+str(reg)+'.json'
         if not os.path.exists(file_path):
             os.makedirs(file_path)
 

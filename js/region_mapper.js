@@ -225,25 +225,26 @@ function load_circle_packing(data_file_path){
 function load_icicle(data_file_path){
 
   var svg = d3.select("#icicle").append("svg")
-  .attr("id", "icicle") .attr("width",width/3.4) .attr("height",height/1.4);
-
-    var rect = svg.selectAll("rect");
+  .attr("id", "icicle") .attr("width",width/3.4) .attr("height",height/1.4),
+  margin = 5;
+  var rect = svg.selectAll("rect");
 
     var x = d3.scaleLinear()
-    .range([0, width]);
+        .range([0, width/3.4]);
 
     var y = d3.scaleLinear()
-        .range([0, height]);
+        .range([0, height/1.4]);
 
     var color = d3.scaleOrdinal(d3.schemeCategory20c);
 
     var partition = d3.partition()
-        .size([width, height])
+        .size([width/3.4, height/1.4])
         .padding(0)
         .round(true);
 
+
     d3.json(data_file_path, function(error, root) {
-      if (error) throw error;
+      // if (error) throw error;
 
       root = d3.hierarchy(d3.entries(root)[0], function(d) {
           return d3.entries(d.value)
@@ -266,7 +267,7 @@ function load_icicle(data_file_path){
 
     function clicked(d) {
       x.domain([d.x0, d.x1]);
-      y.domain([d.y0, height]).range([d.depth ? 20 : 0, height]);
+      y.domain([d.y0, height/1.4]).range([d.depth ? 20 : 0, height/1.4]);
 
       rect.transition()
           .duration(750)
@@ -275,4 +276,5 @@ function load_icicle(data_file_path){
           .attr("width", function(d) { return x(d.x1) - x(d.x0); })
           .attr("height", function(d) { return y(d.y1) - y(d.y0); });
     }
+
 }
