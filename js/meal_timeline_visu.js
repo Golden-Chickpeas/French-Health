@@ -1,11 +1,14 @@
 
 function display_meal_timeline(region) {
+  d3.select('#timeline_vis').remove();
+
 // basic SVG setup
   var margin = {top: 100, right: 100, bottom: 40, left: 250};
   var height = 500 - margin.top - margin.bottom;
   var width = 960 - margin.left - margin.right;
 
   var svg = d3.select("body").append("svg")
+    .attr("id", "timeline_visu")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
@@ -55,12 +58,12 @@ function display_meal_timeline(region) {
         function (error, raw) {
           var dsv = d3.dsvFormat(';');
           var dta = dsv.parse(raw);
-          var d = dta[region_num_to_postal_code_map[region]];
+          var d = dta[region];
           if (d['mean']){
             daily_data[typerep] = +d['mean'];
           }
           counter=counter+1;
-          if (counter == 21)
+          if (counter === 21)
             continueExecution(data)
         }
       );

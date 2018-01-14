@@ -29,9 +29,9 @@ function displayVisualisationAccessBar(show){
   else  document.getElementById("visu_accesser").style.display = "none";
 }
 
-function closeVisualisation(tabName){
-  console.log(tabName);
-  document.getElementById(tabName).style.display='none';
+function closeVisualisation(visuName){
+  console.log(visuName);
+  document.getElementById(visuName).style.display='none';
 }
 
 function goto_region(d,reg_num){
@@ -62,6 +62,8 @@ function goto_region(d,reg_num){
     region_foodgrp_partition_data='data/json/foodgrp_conso_partition/region'+reg_num+'/consos_partition_'+window.selected_foodgrp+'_region_'+reg_num+'.json'
     load_icicle(region_foodgrp_partition_data)
 
+    display_meal_timeline(reg_num);
+
 
   } else {
     x = width / 3.2;
@@ -70,6 +72,7 @@ function goto_region(d,reg_num){
     centered = null;
     closeVisualisation('week_circle_pack');
     closeVisualisation('icicle_container');
+    closeVisualisation('timeline_visu');
     displayVisualisationAccessBar(false);
     var reg_descrip=document.getElementById('description');
     reg_descrip.innerHTML='<h3> Santé et habitudes alimentaires en France</h3>';
@@ -85,7 +88,6 @@ function goto_region(d,reg_num){
       .style("stroke-width", 1.5 / k + "px")
       .style("fill", "#99ff99");
 
-  display_meal_timeline(1);
 }
 
 
