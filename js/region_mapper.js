@@ -60,6 +60,7 @@ function goto_region(d,reg_num){
     k = 1;
     centered = null;
     closeVisualisation('week_circle_pack')
+    closeVisualisation('icicle_container')
     displayVisualisationAccessBar(false)
   }
 
@@ -224,15 +225,20 @@ function load_circle_packing(data_file_path){
 
 function load_icicle(data_file_path){
 
+  //Remove the previous representations
+  d3.select('#icicle_visu').remove();
+  d3.select('#trail').remove();
+
   var vis = d3.select("#icicle").append("svg")
-  .attr("id", "icicle") .attr("width",width/2.5) .attr("height",height/1.4),
+  .attr("id", "icicle_visu") .attr("width",width/2.5) .attr("height",height/1.4),
   margin = 5;
 
   // Breadcrumb dimensions: width, height, spacing, width of tip/tail.
     var b = {w: 150, h: 30, s: 3, t: 10};
 
     var rect = vis.selectAll("rect");
-    var fo = vis.selectAll("foreignObject");
+    var fo = vis.selectAll("foreignObject")
+                .style('fill', 'black');
     var totalSize=0;
 
 
@@ -281,8 +287,11 @@ function load_icicle(data_file_path){
           .attr("y", function(d) { return d.y0; })
           .attr("width", function(d) { return d.x1 - d.x0; })
           .attr("height", function(d) { return d.y1 - d.y0; })
+          .attr("stroke", "rgb(0,0,0)")
           .attr("fill", function(d) { return color((d.children ? d : d.parent).data.key); })
           .on("click", clicked);
+
+        var formatNumber = d3.format(",d");
 
       fo = fo
     		.data(root.descendants())
@@ -291,9 +300,12 @@ function load_icicle(data_file_path){
           .attr("y", function(d) { return d.y0; })
           .attr("width", function(d) { return d.x1 - d.x0; })
           .attr("height", function(d) { return d.y1 - d.y0; })
-         .style("cursor", "pointer")
-         .text(function(d) { return d.data.key.replace(/\uFFFD/g, 'é')})
-         .on("click", clicked);
+          .attr("fill","black")
+          .style("cursor", "pointer")
+          .text(function(d) { return d.children ? d.data.key : " ";})
+          .on("click", clicked)
+          .append("title")
+          .text(function(d) { return d.children ? " " : (d.data.key + "\n" + formatNumber(d.value)); });
 
     	 //get total size from rect
     	totalSize = rect.node().__data__.value;
@@ -315,7 +327,7 @@ function load_icicle(data_file_path){
         .attr("x", function(d) { return x(d.x0); })
         .attr("y", function(d) { return y(d.y0); })
         .attr("width", function(d) { return x(d.x1-d.x0); })
-        .attr("height", function(d) { return y(d.y1-d.y0); });
+        .attr("height", function(d) { return y(d.y1-d.y0); })
 
   	  // Update the trail;
   	  var percentage = (100 * d.value / totalSize).toPrecision(3);
@@ -402,7 +414,6 @@ function load_icicle(data_file_path){
           .attr("dy", "0.35em")
           .attr("text-anchor", "middle")
           .text(percentageString);
-
     }
 
 }
