@@ -216,6 +216,13 @@ path.France_region:hover{
 
 
 
+
+.line {
+    fill: none;
+    stroke: #ffab00;
+    stroke-width: 3;
+}
+
 /*** Page footer ***/
 
 .footer{
