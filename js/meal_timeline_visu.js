@@ -13,6 +13,7 @@ function display_meal_timeline(region) {
 
 // setup scales - the domain is specified inside of the function called when we load the data
     var xScale = d3.scaleLinear().range([0, width]);
+    xScale
     var yScale = d3.scaleLinear().range([height, 0]);
     var color = d3.scaleLinear(d3.schemeCategory10);
 
@@ -21,13 +22,16 @@ function display_meal_timeline(region) {
     var yAxis = d3.axisLeft(yScale);
 
 // create function to parse dates into date objects
-    var parseDate = d3.timeFormat("%Y-%m-%d").parse;
-    var formatDate = d3.timeFormat("%Y-%m-%d");
-    // var bisectDate = d3.bisector(function (d) {
-    //     return d.date;
-    // }).left;
-    //
-    //
+//     var parseDate = d3.timeFormat("%Y-%m-%d").parse;
+//     var formatDate = d3.timeFormat("%Y-%m-%d");
+  var bisectDate = d3.bisector(function (d) {
+    return d.date;
+  }).left;
+  var bisectMeasurement = d3.bisector(function (d) {
+    return d;
+  }).left;
+
+
 
 // set the line attributes
     var line = d3.line()
@@ -136,7 +140,7 @@ function display_meal_timeline(region) {
         svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
-            .call(xAxis);
+            .call(xAxis.ticks(7));
 
         // add the y axis
         svg.append("g")
@@ -197,7 +201,7 @@ function display_meal_timeline(region) {
 
         // add the stock price paths
         stock.append("path")
-            // .attr("class", "line")
+            .attr("class", "line")
             .attr("id", function (d, i) {
                 return "id" + i;
             })
@@ -246,11 +250,27 @@ function display_meal_timeline(region) {
         // mousemove function
         function mousemove() {
 
-            var x0 = xScale.invert(d3.mouse(this)[0]);
-            var i = bisectDate(data, x0, 1); // gives index of element which has date higher than x0
-            var d0 = data[i - 1], d1 = data[i];
-            var d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-            var value = d3.max([+d['Petit-dejeuner'], +d['Dejeuner'], +d['Dinner']]);
+          var x0 = xScale.invert(d3.mouse(this)[0]);
+          var i = bisectDate(data, x0, 1); // gives index of element which has date higher than x0
+          var d0 = data[i - 1], d1 = data[i];
+          var d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+
+
+          console.log(d3.mouse(this))
+          var y0 = yScale.invert(d3.mouse(this)[1]);
+          console.log(y0)
+          var tempdata=[+d['Petit-dejeuner'], +d['Dejeuner'], +d['Diner']].sort();
+          console.log(tempdata);
+          var i = bisectMeasurement(tempdata, y0, 1); // gives index of element which has date higher than x0
+          console.log(i);
+
+          var d0 = tempdata[i - 1], d1 = tempdata[i];
+          var value = y0 - d0 > d1 - y0 ? d1 : d0;
+
+
+          // var value = d3.max([+d['Petit-dejeuner'], +d['Dejeuner'], +d['Diner']]);
+          console.log(value);
+          console.log(d);
 
             focus.select("circle.y")
                 .attr("transform", "translate(" + xScale(d.date) + "," + yScale(value) + ")");
