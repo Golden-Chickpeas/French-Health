@@ -263,4 +263,6 @@ function display_meal_timeline(region) {
 
     }
   }
+
+  return svg;
 }
