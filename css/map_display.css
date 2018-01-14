@@ -1,3 +1,13 @@
+rect.background {
+  fill: white;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+}
+
 .France_region{
     -webkit-transition: all .75s linear;
     -moz-transition: all .75s linear;

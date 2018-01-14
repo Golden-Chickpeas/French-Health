@@ -447,8 +447,12 @@ function load_icicle(data_file_path){
 
 
 function load_hierarchical_barchart(data_file_path){
+
+      //Remove all previous representations
+      d3.select('#barchart_visu').remove();
+
       var x = d3.scaleLinear()
-        .range([0, width/3]);
+        .range([0, width/2.5]);
 
       var barHeight = 20;
 
@@ -459,7 +463,7 @@ function load_hierarchical_barchart(data_file_path){
           delay = 25;
 
       var partition = d3.partition()
-        .size([width/3, height/1.4])
+        .size([width/2.5, height/1.8])
         .padding(0)
         .round(true);
           // .value(function(d) { return d.size; });
@@ -468,16 +472,16 @@ function load_hierarchical_barchart(data_file_path){
                 .scale(x);
 
       var svg = d3.select("#hierarchy_barchart").append("svg")
-          .attr("width", width/3)
-          .attr("height", height/1.4)
-          .attr("id","barchart")
+          .attr("width", width/2.5)
+          .attr("height", height/1.8)
+          .attr("id","barchart_visu")
         .append("g")
-          .attr("transform", "translate(" + "10,10)");
+          .attr("transform", "translate(" + "160,40)");
 
       svg.append("rect")
           .attr("class", "background")
-          .attr("width", width/3)
-          .attr("height", height/1.4)
+          .attr("width", width/2.5)
+          .attr("height", height/1.8)
           .on("click", up);
 
       svg.append("g")
@@ -642,16 +646,22 @@ function load_hierarchical_barchart(data_file_path){
             .style("cursor", function(d) { return !d.children ? null : "pointer"; })
             .on("click", down);
 
-        bar.append("text")
-            .attr("x", -6)
-            .attr("y", barHeight / 2)
-            .attr("dy", ".35em")
-            .style("text-anchor", "end")
-            .text(function(d) { return d.name; });
+            bar.append("text")
+                .attr("class","barchart_text")
+                .attr("x", -6)
+                .attr("y", barHeight / 2)
+                .attr("dy", ".35em")
+                .style("text-anchor", "end")
+                .text(function(d) { return d.data.name; });
+
+            d3.selectAll("#barchart_text").style("fill", "black");
 
         bar.append("rect")
             .attr("width", function(d) { return x(d.value); })
             .attr("height", barHeight);
+
+        bar.append("title")
+            .text(function(d) { return d.data.name; });
 
         return bar;
       }
