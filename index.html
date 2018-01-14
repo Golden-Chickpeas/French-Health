@@ -114,10 +114,9 @@
            <br/>
            <!-- The grid: three columns -->
           <div id="visu_accesser" class="row" style="display:none;">
+            <div class="column" onclick="openTab('hierarchy_barchart');" style="background:#ccccff;">Barchart</div>
             <div class="column" onclick="openTab('week_circle_pack');" style="background:#ccccff;">Circle Packing</div>
             <div class="column" onclick="openTab('icicle_container');" style="background:#ccccff;">Icicle</div>
-            <div class="column" onclick="openTab('b3');" style="background:#ccccff;">???</div>
-
           </div>
 
           <!-- The expanding grid (hidden by default) -->
@@ -132,10 +131,8 @@
             <div id="icicle_visu"></div>
           </div>
 
-          <div id="b3" class="containerTab" style="display:none;background:red">
-            <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
-            <h2>Box 3</h2>
-            <p>Lorem ipsum..</p>
+          <div id="hierarchy_barchart" class="containerTab" style="display:none;background:transparent">
+            <span onclick="closeVisualisation('hierarchy_barchart')" class="closebtn">x</span>
           </div>
 
         </div>
