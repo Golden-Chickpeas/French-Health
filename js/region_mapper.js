@@ -7,6 +7,11 @@
 * @version 1.0
 */
 
+region_names={"1":"Région Parisienne", "2":"Champagne","3":"Picardie","4":"Haute-Normandie",
+"5":"Centre","6":"Basse-Normandie","7":"Bourgogne", "8":"Nord", "9":"Lorraine","10":"Alsace",
+"11":"Franche Comté","12":"Pays de la Loire", "13":"Bretagne","14":"Poitou Charentes",
+"15":"Aquitaine","16":"Midi-Pyrénées","17":"limousin","18":"Rhône-Alpes","19":"Auvergne",
+"20":"Languedoc","21":"Provence Côte d'Azur"};
 
 // Hide all elements with class="containerTab", except for the one that matches the clickable grid column
 function openTab(tabName) {
@@ -25,6 +30,7 @@ function displayVisualisationAccessBar(show){
 }
 
 function closeVisualisation(tabName){
+  console.log(tabName);
   document.getElementById(tabName).style.display='none';
 }
 
@@ -39,6 +45,9 @@ function goto_region(d,reg_num){
     // y = d3.event.pageY;
     k = 3;
     centered = d;
+
+    var reg_descrip=document.getElementById('description');
+    reg_descrip.innerHTML='<h3>'+region_names[reg_num]+'</h3>';
 
     //  When a region is clicked display visualisation bar
     displayVisualisationAccessBar(true);
@@ -59,9 +68,11 @@ function goto_region(d,reg_num){
     y = height / 1.4;
     k = 1;
     centered = null;
-    closeVisualisation('week_circle_pack')
-    closeVisualisation('icicle_container')
-    displayVisualisationAccessBar(false)
+    closeVisualisation('week_circle_pack');
+    closeVisualisation('icicle_container');
+    displayVisualisationAccessBar(false);
+    var reg_descrip=document.getElementById('description');
+    reg_descrip.innerHTML='<h3> Santé et habitudes alimentaires en France</h3>';
   }
 
   fr_regions.selectAll("path")
@@ -229,7 +240,7 @@ function load_icicle(data_file_path){
   d3.select('#icicle_visu').remove();
   d3.select('#trail').remove();
 
-  var vis = d3.select("#icicle").append("svg")
+  var vis = d3.select("#icicle_container").append("svg")
   .attr("id", "icicle_visu") .attr("width",width/2.5) .attr("height",height/1.4),
   margin = 5;
 
@@ -280,6 +291,9 @@ function load_icicle(data_file_path){
     	var sequenceArray = root.ancestors().reverse();
     	updateBreadcrumbs(sequenceArray, percentageString);
 
+
+      var formatNumber = d3.format(",d");
+
       rect = rect
           .data(root.descendants())
         .enter().append("rect")
@@ -291,21 +305,18 @@ function load_icicle(data_file_path){
           .attr("fill", function(d) { return color((d.children ? d : d.parent).data.key); })
           .on("click", clicked);
 
-        var formatNumber = d3.format(",d");
 
       fo = fo
     		.data(root.descendants())
     		.enter().append("foreignObject")
+        .on("click", clicked)
           .attr("x", function(d) { return d.x0; })
           .attr("y", function(d) { return d.y0; })
           .attr("width", function(d) { return d.x1 - d.x0; })
           .attr("height", function(d) { return d.y1 - d.y0; })
-          .attr("fill","black")
           .style("cursor", "pointer")
-          .text(function(d) { return d.children ? d.data.key : " ";})
-          .on("click", clicked)
-          .append("title")
-          .text(function(d) { return d.children ? " " : (d.data.key + "\n" + formatNumber(d.value)); });
+          .text(function(d) { return d.children ? d.data.key : formatNumber(d.value);})
+          .attr("fill","black");
 
     	 //get total size from rect
     	totalSize = rect.node().__data__.value;
@@ -314,6 +325,9 @@ function load_icicle(data_file_path){
     function clicked(d) {
       x.domain([d.x0, d.x1]);
       y.domain([d.y0, height/1.4]).range([d.depth ? 20 : 0, height/1.4]);
+
+      rect.append("title")
+          .text(function(d){return d.data.key;});
 
       rect.transition()
           .duration(750)
@@ -327,7 +341,7 @@ function load_icicle(data_file_path){
         .attr("x", function(d) { return x(d.x0); })
         .attr("y", function(d) { return y(d.y0); })
         .attr("width", function(d) { return x(d.x1-d.x0); })
-        .attr("height", function(d) { return y(d.y1-d.y0); })
+        .attr("height", function(d) { return y(d.y1-d.y0); });
 
   	  // Update the trail;
   	  var percentage = (100 * d.value / totalSize).toPrecision(3);
@@ -383,7 +397,7 @@ function load_icicle(data_file_path){
       // Data join; key function combines name and depth (= position in sequence).
       var trail = d3.select("#trail")
           .selectAll("g")
-          .data(nodeArray, function(d) { return d.data.key.replace(/\uFFFD/g, 'é') + d.depth; });
+          .data(nodeArray, function(d) { return d.data.key; });
 
       // Remove exiting nodes.
       trail.exit().remove();
@@ -400,7 +414,14 @@ function load_icicle(data_file_path){
           .attr("y", b.h / 2)
           .attr("dy", "0.35em")
           .attr("text-anchor", "middle")
-          .text(function(d) { return d.data.key.replace(/\uFFFD/g, 'é'); });
+          .text(function(d) { return d.data.key.length<15 ? d.data.key + d.depth : d.data.key.substring(0,16); });
+
+      entering.append("title")
+          .attr("x", (b.w + b.t) / 2)
+          .attr("y", b.h / 2)
+          .attr("dy", "0.35em")
+          .attr("text-anchor", "middle")
+          .text(function(d) { return d.data.key; });
 
       // Merge enter and update selections; set position for all nodes.
       entering.merge(trail).attr("transform", function(d, i) {
