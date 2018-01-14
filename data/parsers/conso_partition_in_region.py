@@ -1,3 +1,4 @@
+# coding: iso-8859-1
 # NAME
 #        conso-hierarchy_week
 #
@@ -17,7 +18,7 @@ import json
 
 # Interesting fields : codgr	libgr	sougr	libsougr	codal	libal
 data_url_nomenclature='../raw/INCA2/Nomenclature_3.csv'
-df_nomenclature=pd.read_csv(data_url_nomenclature, sep = ';')
+df_nomenclature=pd.read_csv(data_url_nomenclature, sep = ';',encoding='cp1252')
 
 for reg in range(1,22):
     for foodgrp in range(1,45):
@@ -45,7 +46,7 @@ for reg in range(1,22):
                 codal_name=codal_region['libal'].iloc[0]
 
                 c=sougrp_conso.loc[(sougrp_conso['codal'] == codal)]
-                conso_codal[str(codal_name)]=c.qte_brute.mean()
+                conso_codal[codal_name]=c.qte_brute.mean()
 
 
             foodsougrp_dict[sougrp_name]=conso_codal
@@ -59,5 +60,5 @@ for reg in range(1,22):
             os.makedirs(file_path)
 
         with open(os.path.join(file_path,file_name), 'w') as json_file:
-            json.dump(data, json_file, ensure_ascii=False)
+            json.dump(data, json_file, encoding='cp1252')
             # print(data)
