@@ -161,6 +161,13 @@ function display_meal_timeline(region) {
             .style("opacity", 0.5)
             .attr("r", 8);
 
+      focus.append("text")
+        .attr("class", "text")
+        .attr("fill", "none")
+        .attr("stroke", "black")
+        .style("opacity", 0.8);
+
+
         // add horizontal line at intersection
         focus.append("line")
             .attr("class", "x")
@@ -284,6 +291,12 @@ function display_meal_timeline(region) {
                 .attr("x2", xScale(d.date))
                 .attr("transform", "translate(0,"
                     + (yScale(value)) + ")");
+
+          focus.select("text.text")
+            // .attr("x2", xScale(d.date))
+            .attr("transform", "translate("+xScale(d.date+0.05)+ ","
+              + (yScale(value)) + ")")
+            .text(value);
 
         };
     }
