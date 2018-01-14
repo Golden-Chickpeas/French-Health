@@ -44,7 +44,7 @@ function display_meal_timeline(region) {
   var focus = svg.append("g").style("display", "none");
 
 // import data and create chart
-  var basepath = "data/csv/duree_repas_mean/duree_repas_mean";gu
+  var basepath = "data/csv/duree_repas_mean/duree_repas_mean";
   var data = [];
   var counter = 0;
   [1,2,3,4,5,6,7].forEach(function (numjour) {
