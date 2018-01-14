@@ -18,7 +18,7 @@ import io
 
 # Interesting fields : codgr	libgr	sougr	libsougr	codal	libal
 data_url_nomenclature='../raw/INCA2/Nomenclature_3.csv'
-df_nomenclature=pd.read_csv(data_url_nomenclature, sep = ';')
+df_nomenclature=pd.read_csv(data_url_nomenclature, sep = ';',encoding='cp1252')
 
 for reg in range(1,22):
     for foodgrp in range(1,45):
@@ -70,5 +70,5 @@ for reg in range(1,22):
             os.makedirs(file_path)
 
         with open(os.path.join(file_path,file_name), 'w') as json_file:
-            json.dump(data, json_file, ensure_ascii=False)
+            json.dump(data, json_file, encoding='cp1252')
             # print(data)
