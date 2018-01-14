@@ -129,11 +129,11 @@ function load_circle_packing(data_file_path){
       var text = g.selectAll("text")
       .data(nodes)
       .enter().append("text")
-      .attr("class", "label")
+      .attr("class", "label circle_text")
       .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
       .style("display", function(d) { return d.parent === root ? "inline" : "none"; })
       .each(function(d) {
-        var name=d.data.name.replace(/\uFFFD/g, 'é')
+        var name=d.data.name
         var arr = name.split(" ");
         i = 0;
 
@@ -180,7 +180,7 @@ function load_circle_packing(data_file_path){
             return function(t) { zoomTo(i(t)); };
           });
 
-        transition.selectAll("text")
+        transition.selectAll("text.circle_text")
           .filter(function(d) { return d.parent === focus || (d.height===0) || this.style.display === "inline"; })
           .style("fill-opacity", function(d) { return ((d.parent === focus) || (d === focus & d.height===0))? 1 : 0; })
           .on("start", function(d) {
