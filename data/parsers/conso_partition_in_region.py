@@ -1,3 +1,4 @@
+# coding: iso-8859-1
 # NAME
 #        conso-hierarchy_week
 #
@@ -17,7 +18,7 @@ import json
 
 # Interesting fields : codgr	libgr	sougr	libsougr	codal	libal
 data_url_nomenclature='../raw/INCA2/Nomenclature_3.csv'
-df_nomenclature=pd.read_csv(data_url_nomenclature, sep = ';')
+df_nomenclature=pd.read_csv(data_url_nomenclature, sep = ';',encoding='cp1252')
 
 for reg in range(1,22):
     for foodgrp in range(1,45):
@@ -29,7 +30,7 @@ for reg in range(1,22):
 
         # JSON for partition is simpler than JSON for hierarchy :)
         data = {}
-        foodgrp_dict= {}
+
         foodsougrp_dict={}
         foodgrp_name=""
         for foodsougrp in np.unique(df_consoreg["sougr"].values):
@@ -45,20 +46,19 @@ for reg in range(1,22):
                 codal_name=codal_region['libal'].iloc[0]
 
                 c=sougrp_conso.loc[(sougrp_conso['codal'] == codal)]
-                conso_codal[str(codal_name)]=c.qte_brute.mean()
+                conso_codal[codal_name]=c.qte_brute.mean()
 
 
             foodsougrp_dict[sougrp_name]=conso_codal
 
-        foodgrp_dict[foodgrp_name] = foodsougrp_dict
-        data['region_'+str(reg)+'_partitions_foodgrp_'+str(foodgrp)] = foodgrp_dict
+        data[foodgrp_name] =  foodsougrp_dict
 
 
         file_path = os.path.join('..', 'json', 'foodgrp_conso_partition','region'+str(reg))
-        file_name = 'consos_paritition_'+str(foodgrp)+'_region_'+str(reg)+'.json'
+        file_name = 'consos_partition_'+str(foodgrp)+'_region_'+str(reg)+'.json'
         if not os.path.exists(file_path):
             os.makedirs(file_path)
 
         with open(os.path.join(file_path,file_name), 'w') as json_file:
-            json.dump(data, json_file, ensure_ascii=False)
+            json.dump(data, json_file, encoding='cp1252')
             # print(data)

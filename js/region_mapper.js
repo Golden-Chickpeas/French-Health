@@ -7,6 +7,11 @@
 * @version 1.0
 */
 
+region_names={"1":"Région Parisienne", "2":"Champagne","3":"Picardie","4":"Haute-Normandie",
+"5":"Centre","6":"Basse-Normandie","7":"Bourgogne", "8":"Nord", "9":"Lorraine","10":"Alsace",
+"11":"Franche Comté","12":"Pays de la Loire", "13":"Bretagne","14":"Poitou Charentes",
+"15":"Aquitaine","16":"Midi-Pyrénées","17":"limousin","18":"Rhône-Alpes","19":"Auvergne",
+"20":"Languedoc","21":"Provence Côte d'Azur"};
 
 // Hide all elements with class="containerTab", except for the one that matches the clickable grid column
 function openTab(tabName) {
@@ -25,6 +30,7 @@ function displayVisualisationAccessBar(show){
 }
 
 function closeVisualisation(tabName){
+  console.log(tabName);
   document.getElementById(tabName).style.display='none';
 }
 
@@ -39,6 +45,9 @@ function goto_region(d,reg_num){
     // y = d3.event.pageY;
     k = 3;
     centered = d;
+
+    var reg_descrip=document.getElementById('description');
+    reg_descrip.innerHTML='<h3>'+region_names[reg_num]+'</h3>';
 
     //  When a region is clicked display visualisation bar
     displayVisualisationAccessBar(true);
@@ -59,8 +68,11 @@ function goto_region(d,reg_num){
     y = height / 1.4;
     k = 1;
     centered = null;
-    closeVisualisation('week_circle_pack')
-    displayVisualisationAccessBar(false)
+    closeVisualisation('week_circle_pack');
+    closeVisualisation('icicle_container');
+    displayVisualisationAccessBar(false);
+    var reg_descrip=document.getElementById('description');
+    reg_descrip.innerHTML='<h3> Santé et habitudes alimentaires en France</h3>';
   }
 
   fr_regions.selectAll("path")
@@ -82,7 +94,7 @@ function load_circle_packing(data_file_path){
     d3.select('#circle_pack').remove();
 
     var svg = d3.select("#week_circle_pack").append("svg")
-    .attr("id", "circle_pack") .attr("width",width/3.4) .attr("height",height/1.4),
+    .attr("id", "circle_pack") .attr("width",width/2.5) .attr("height",height/1.4),
     margin = 2,
     diameter = +svg.attr("width"),
     g = svg.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
@@ -224,26 +236,39 @@ function load_circle_packing(data_file_path){
 
 function load_icicle(data_file_path){
 
-  var svg = d3.select("#icicle").append("svg")
-  .attr("id", "icicle") .attr("width",width/3.4) .attr("height",height/1.4);
+  //Remove the previous representations
+  d3.select('#icicle_visu').remove();
+  d3.select('#trail').remove();
 
-    var rect = svg.selectAll("rect");
+  var vis = d3.select("#icicle_container").append("svg")
+  .attr("id", "icicle_visu") .attr("width",width/2.5) .attr("height",height/1.4),
+  margin = 5;
+
+  // Breadcrumb dimensions: width, height, spacing, width of tip/tail.
+    var b = {w: 150, h: 30, s: 3, t: 10};
+
+    var rect = vis.selectAll("rect");
+    var fo = vis.selectAll("foreignObject")
+                .style('fill', 'black');
+    var totalSize=0;
+
 
     var x = d3.scaleLinear()
-    .range([0, width]);
+        .range([0, width/2.5]);
 
     var y = d3.scaleLinear()
-        .range([0, height]);
+        .range([0, height/1.4]);
 
     var color = d3.scaleOrdinal(d3.schemeCategory20c);
 
     var partition = d3.partition()
-        .size([width, height])
+        .size([width/2.5, height/1.4])
         .padding(0)
         .round(true);
 
+
     d3.json(data_file_path, function(error, root) {
-      if (error) throw error;
+      // if (error) throw error;
 
       root = d3.hierarchy(d3.entries(root)[0], function(d) {
           return d3.entries(d.value)
@@ -252,6 +277,22 @@ function load_icicle(data_file_path){
         .sort(function(a, b) { return b.value - a.value; });
 
       partition(root);
+      //add breadcrumb
+      initializeBreadcrumbTrail();
+      var percentage = 100;
+    	var percentageString = percentage + "%";
+
+    	  d3.select("#percentage")
+    		  .text(percentageString);
+
+    	  d3.select("#explanation")
+    		  .style("visibility", "");
+
+    	var sequenceArray = root.ancestors().reverse();
+    	updateBreadcrumbs(sequenceArray, percentageString);
+
+
+      var formatNumber = d3.format(",d");
 
       rect = rect
           .data(root.descendants())
@@ -260,13 +301,33 @@ function load_icicle(data_file_path){
           .attr("y", function(d) { return d.y0; })
           .attr("width", function(d) { return d.x1 - d.x0; })
           .attr("height", function(d) { return d.y1 - d.y0; })
+          .attr("stroke", "rgb(0,0,0)")
           .attr("fill", function(d) { return color((d.children ? d : d.parent).data.key); })
           .on("click", clicked);
+
+
+      fo = fo
+    		.data(root.descendants())
+    		.enter().append("foreignObject")
+        .on("click", clicked)
+          .attr("x", function(d) { return d.x0; })
+          .attr("y", function(d) { return d.y0; })
+          .attr("width", function(d) { return d.x1 - d.x0; })
+          .attr("height", function(d) { return d.y1 - d.y0; })
+          .style("cursor", "pointer")
+          .text(function(d) { return d.children ? d.data.key : formatNumber(d.value);})
+          .attr("fill","black");
+
+    	 //get total size from rect
+    	totalSize = rect.node().__data__.value;
     });
 
     function clicked(d) {
       x.domain([d.x0, d.x1]);
-      y.domain([d.y0, height]).range([d.depth ? 20 : 0, height]);
+      y.domain([d.y0, height/1.4]).range([d.depth ? 20 : 0, height/1.4]);
+
+      rect.append("title")
+          .text(function(d){return d.data.key;});
 
       rect.transition()
           .duration(750)
@@ -274,5 +335,106 @@ function load_icicle(data_file_path){
           .attr("y", function(d) { return y(d.y0); })
           .attr("width", function(d) { return x(d.x1) - x(d.x0); })
           .attr("height", function(d) { return y(d.y1) - y(d.y0); });
+
+      fo.transition()
+        .duration(750)
+        .attr("x", function(d) { return x(d.x0); })
+        .attr("y", function(d) { return y(d.y0); })
+        .attr("width", function(d) { return x(d.x1-d.x0); })
+        .attr("height", function(d) { return y(d.y1-d.y0); });
+
+  	  // Update the trail;
+  	  var percentage = (100 * d.value / totalSize).toPrecision(3);
+  	  var percentageString = percentage + "%";
+  	  if (percentage < 0.1) {
+  		    percentageString = "< 0.1%";
+  	  }
+
+  	  d3.select("#percentage")
+  		  .text(percentageString);
+
+  	  d3.select("#explanation")
+  		  .style("visibility", "");
+
+  	  var sequenceArray = d.ancestors().reverse();
+  	  //sequenceArray.shift(); // remove root node from the array
+  	  updateBreadcrumbs(sequenceArray, percentageString);
     }
+
+    function initializeBreadcrumbTrail() {
+      // Add the svg area.
+      var trail = d3.select("#breadcrumb").append("svg")
+          .attr("width", width/2.5)
+          .attr("height", 50)
+          .attr("id", "trail");
+      // Add the label at the end, for the percentage.
+      trail.append("text")
+        .attr("id", "endlabel")
+        .style("fill", "#000");
+
+    	  // Make the breadcrumb trail visible, if it's hidden.
+      d3.select("#trail")
+          .style("visibility", "");
+    }
+
+    // Generate a string that describes the points of a breadcrumb polygon.
+    function breadcrumbPoints(d, i) {
+      var points = [];
+      points.push("0,0");
+      points.push(b.w + ",0");
+      points.push(b.w + b.t + "," + (b.h / 2));
+      points.push(b.w + "," + b.h);
+      points.push("0," + b.h);
+      if (i > 0) { // Leftmost breadcrumb; don't include 6th vertex.
+        points.push(b.t + "," + (b.h / 2));
+      }
+      return points.join(" ");
+    }
+
+    // Update the breadcrumb trail to show the current sequence and percentage.
+    function updateBreadcrumbs(nodeArray, percentageString) {
+
+      // Data join; key function combines name and depth (= position in sequence).
+      var trail = d3.select("#trail")
+          .selectAll("g")
+          .data(nodeArray, function(d) { return d.data.key; });
+
+      // Remove exiting nodes.
+      trail.exit().remove();
+
+      // Add breadcrumb and label for entering nodes.
+      var entering = trail.enter().append("g");
+
+      entering.append("polygon")
+          .attr("points", breadcrumbPoints)
+          .style("fill", function(d) { return color((d.children ? d : d.parent).data.key); });
+
+      entering.append("text")
+          .attr("x", (b.w + b.t) / 2)
+          .attr("y", b.h / 2)
+          .attr("dy", "0.35em")
+          .attr("text-anchor", "middle")
+          .text(function(d) { return d.data.key.length<15 ? d.data.key + d.depth : d.data.key.substring(0,16); });
+
+      entering.append("title")
+          .attr("x", (b.w + b.t) / 2)
+          .attr("y", b.h / 2)
+          .attr("dy", "0.35em")
+          .attr("text-anchor", "middle")
+          .text(function(d) { return d.data.key; });
+
+      // Merge enter and update selections; set position for all nodes.
+      entering.merge(trail).attr("transform", function(d, i) {
+        return "translate(" + i * (b.w + b.s) + ", 0)";
+      });
+
+      // Now move and update the percentage at the end.
+      d3.select("#trail").select("#endlabel")
+          .attr("x", (nodeArray.length + 0.5) * (b.w + b.s))
+          .attr("y", b.h / 2)
+          .attr("dy", "0.35em")
+          .attr("text-anchor", "middle")
+          .text(percentageString);
+    }
+
 }

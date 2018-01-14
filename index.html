@@ -104,12 +104,9 @@
     <div id = 'container' class="main-content">
       <div class="row">
         <div id='france_map' class="col-md-6"></div>
-        <div id='description' class="col-md-4">
-          <div class ="row">
-          A description here ? <br/>
-           here ? <br/>
-            here ? <br/>
-             here ? <br/>
+        <div class="col-md-4">
+          <div id='description' class ="row">
+           France
            </div>
            <br/>
            <br/>
@@ -117,7 +114,7 @@
            <!-- The grid: three columns -->
           <div id="visu_accesser" class="row" style="display:none;">
             <div class="column" onclick="openTab('week_circle_pack');" style="background:#ccccff;">Circle Packing</div>
-            <div class="column" onclick="openTab('icicle');" style="background:#ccccff;">Icicle</div>
+            <div class="column" onclick="openTab('icicle_container');" style="background:#ccccff;">Icicle</div>
             <div class="column" onclick="openTab('b3');" style="background:#ccccff;">???</div>
 
           </div>
@@ -128,8 +125,10 @@
             <span onclick="closeVisualisation('week_circle_pack')" class="closebtn">x</span>
           </div>
 
-          <div id="icicle" class="containerTab" style="display:none;background:blue">
-            <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
+          <div id="icicle_container" class="containerTab" style="display:none;background:transparent">
+            <span onclick="closeVisualisation('icicle_container')" class="closebtn">x</span>
+            <div id="breadcrumb"></div>
+            <div id="icicle_visu"></div>
           </div>
 
           <div id="b3" class="containerTab" style="display:none;background:red">
