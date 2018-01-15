@@ -75,7 +75,7 @@ function goto_region(d,reg_num){
     closeVisualisation('icicle_container');
     closeVisualisation('timeline_visu');
     displayVisualisationAccessBar(false);
-    var reg_descrip=document.getElementById(' description');
+    var reg_descrip=document.getElementById('description');
     reg_descrip.innerHTML='<h3> Santé et habitudes alimentaires en France</h3>';
   }
 
