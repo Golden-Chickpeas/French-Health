@@ -59,4 +59,28 @@ rect.background {
 .red_shades .q4 { fill: #b81b34}
 .red_shades .q5 { fill: #8b0000}
 
+.bottle_shades .q0 {fill: #d1fff3}
+.bottle_shades .q1 {fill: #a8dacb}
+.bottle_shades .q2 {fill: #80b5a4}
+.bottle_shades .q3 {fill: #59937f}
+.bottle_shades .q4 {fill: #33715c}
+.bottle_shades .q5 {fill: #00513b}
+
+.piepink_shades .q0 {fill: #ffb6da}
+.piepink_shades .q1 {fill: #ffa1cb}
+.piepink_shades .q2 {fill: #ff89bc}
+.piepink_shades .q3 {fill: #ff6fad}
+.piepink_shades .q4 {fill: #ff519e}
+.piepink_shades .q5 {fill: #ff1d8e}
+
+.spinach_shades .q0 {fill: #ecefde}
+.spinach_shades .q1 {fill: #d6dabe}
+.spinach_shades .q2 {fill: #c0c59d}
+.spinach_shades .q3 {fill: #aab17f}
+.spinach_shades .q4 {fill: #949e61}
+.spinach_shades .q5 {fill: #7e8b43}
+
+
+
+
 /*Red shades obtained on https://gka.github.io/palettes/#colors=lightyellow,orange,deeppink,darkred|steps=4|bez=1|coL=1*/

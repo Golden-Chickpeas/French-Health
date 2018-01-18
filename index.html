@@ -70,6 +70,13 @@
             <span class="lowest-layer-nav">Eau</span>
           </div>
         </li>
+
+        <li>
+            <div class="nav-label top-layer-nav">
+                <span class="lowest-layer-nav">Boissons alcoolisées</span>
+            </div>
+        </li>
+
         <li>
 
           <div class="nav-label top-layer-nav panel-heading collapsed" data-toggle="collapse" href="#collapseConso">
@@ -79,22 +86,29 @@
               <ul role="menu" aria-labelledby="tRepas">
                   <li class="lowest-layer-nav">Pain et panification</li>
                   <li class="divider"></li>
-                  <li class="lowest-layer-nav">Céréales pour petit déjeuner</li>
-                  <li class="divider"></li>
                   <li class="lowest-layer-nav">Pâtisseries et gâteaux</li>
                   <li class="divider"></li>
+                  <li class="lowest-layer-nav">Ultra-frais laitier</li>
+                  <li class="divider"></li>
+                  <li class="lowest-layer-nav">Fromages</li>
+                  <li class="divider"></li>
+                  <li class="lowest-layer-nav">Légumes</li>
+                  <li class="divider"></li>
+                  <li class="lowest-layer-nav">Fruits</li>
+                  <li class="divider"></li>
                   <li class="lowest-layer-nav">Viande</li>
+                  <li class="divider"></li>
+                  <li class="lowest-layer-nav">Charcuterie</li>
+                  <li class="divider"></li>
+                  <li class="lowest-layer-nav">Volaille et gibier</li>
+                  <li class="divider"></li>
+                  <li class="lowest-layer-nav">Poissons</li>
                 </ul>
           </div>
         </li>
         <li>
             <div class="nav-label top-layer-nav">
                 <span class="lowest-layer-nav">Activité Physique</span>
-            </div>
-        </li>
-        <li>
-            <div class="nav-label top-layer-nav">
-                <span class="lowest-layer-nav">Poids</span>
             </div>
         </li>
       </ul>
@@ -112,8 +126,8 @@
            <br/>
            <br/>
            <br/>
-           <!-- The grid: three columns -->
-          <div id="visu_accesser" class="row" style="display:none;">
+           <!-- The grid for region visualisation: three columns -->
+          <div id="region_foodgrp_visu_accesser" class="row" style="display:none;">
             <div class="column" onclick="openTab('hierarchy_barchart');" style="background:#ccccff;">Barchart</div>
             <div class="column" onclick="openTab('week_circle_pack');" style="background:#ccccff;">Circle Packing</div>
             <div class="column" onclick="openTab('icicle_container');" style="background:#ccccff;">Icicle</div>
@@ -134,6 +148,23 @@
           <div id="hierarchy_barchart" class="containerTab" style="display:none;background:transparent">
             <span onclick="closeVisualisation('hierarchy_barchart')" class="closebtn">x</span>
           </div>
+
+
+          <!-- The grid for region visualisation of meals: 2 columns columns -->
+         <div id="region_meals_visu_accesser" class="row" style="display:none;">
+           <div class="column" onclick="openTab('timeline');" style="background:#ffcc99;">Timeline : temps de repas</div>
+           <div class="column" onclick="openTab('sunburst');" style="background:#ffcc99;"> Composition moyenne d'un plat</div>
+         </div>
+
+         <!-- The expanding grid (hidden by default) -->
+         <div id="timeline" class="containerTab" style="display:none;background:transparent">
+           <!-- If you want the ability to close the container, add a close button -->
+           <span onclick="closeVisualisation('timeline')" class="closebtn">x</span>
+         </div>
+
+         <div id="sunburst" class="containerTab" style="display:none;background:transparent">
+           <span onclick="closeVisualisation('sunburst')" class="closebtn">x</span>
+         </div>
 
         </div>
       </div>
