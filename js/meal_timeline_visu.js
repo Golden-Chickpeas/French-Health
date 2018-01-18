@@ -1,13 +1,18 @@
 
+function displayRegionMealsVisuAccessBar(show){
+  if (show) document.getElementById("region_meals_visu_accesser").style.display = "block";
+  else  document.getElementById("region_meals_visu_accesser").style.display = "none";
+}
+
 function display_meal_timeline(region) {
-  d3.select('#timeline_vis').remove();
+  d3.select('#timeline_visu').remove();
 
 // basic SVG setup
-  var margin = {top: 100, right: 100, bottom: 40, left: 250};
-  var height = 500 - margin.top - margin.bottom;
-  var width = 960 - margin.left - margin.right;
+  var margin = {top: 70, right: 100, bottom: 40, left: 2};
+  var height = 550 - margin.top - margin.bottom;
+  var width = 750 - margin.left - margin.right;
 
-  var svg = d3.select("body").append("svg")
+  var svg = d3.select('#timeline').append("svg")
     .attr("id", "timeline_visu")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -16,7 +21,6 @@ function display_meal_timeline(region) {
 
 // setup scales - the domain is specified inside of the function called when we load the data
   var xScale = d3.scaleLinear().range([0, width]);
-  xScale
   var yScale = d3.scaleLinear().range([height, 0]);
   var color = d3.scaleLinear(d3.schemeCategory10);
 

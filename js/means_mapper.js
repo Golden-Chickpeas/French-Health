@@ -121,6 +121,7 @@ function updateMeansMap(category){
       file_path= "data/csv/duree_repas_mean/duree_repas_mean_of_tyrep_Petit-dejeuner.csv";
       category_mapped = "minutes";
       color_scale = "dark_gold_shades";
+      window.selectedMeal = "petit-déjeuner";
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -128,6 +129,7 @@ function updateMeansMap(category){
       file_path= "data/csv/duree_repas_mean/duree_repas_mean_of_tyrep_Dejeuner.csv";
       category_mapped = "minutes";
       color_scale = "dark_gold_shades";
+      window.selectedMeal = "déjeuner";
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -135,6 +137,7 @@ function updateMeansMap(category){
       file_path= "data/csv/duree_repas_mean/duree_repas_mean_of_tyrep_Diner.csv";
       category_mapped = "minutes";
       color_scale = "dark_gold_shades";
+      window.selectedMeal = "dîner";
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -142,6 +145,17 @@ function updateMeansMap(category){
       file_path= "data/csv/foodgrp_conso_means/conso_of_codgr_31.csv";
       category_mapped = "mL/jour";
       color_scale = "blue_shades";
+      window.selected_foodgrp=31;
+      window.selectedMeal = undefined;
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
+    case "boissons alcoolisées":
+      file_path= "data/csv/foodgrp_conso_means/conso_of_codgr_33.csv";
+      category_mapped = "mL/jour";
+      color_scale = "bottle_shades";
+      window.selected_foodgrp=33;
+      window.selectedMeal = undefined;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -150,29 +164,43 @@ function updateMeansMap(category){
       category_mapped = "g/jour";
       color_scale = "dark_gold_shades";
       window.selected_foodgrp=1;
+      window.selectedMeal = undefined;
       load_dataset(file_path,category_mapped,color_scale);
-      break;
-
-    case "céréales pour petit déjeuner":
-      file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_2.csv";
-      category_mapped = "g/jour";
-      color_scale = "light_gold_shades";
-      window.selected_foodgrp=2;
-      load_dataset(file_path,category_mapped,color_scale);
-
-      //   d3.text(filePath,
-      // function (error, raw) { if (error) alert(error);
-      //   var dsv=d3.dsvFormat(';');
-      //   var data=dsv.parse(raw);
-      //   display_dataset(data, "cereales_pdej");});
-      //   $("#france_map svg").attr("class", "light_gold_shades");
       break;
 
     case "pâtisseries et gâteaux":
       file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_8.csv";
       category_mapped = "g/jour";
-      color_scale = "grey_shades";
+      color_scale = "piepink_shades";
       window.selected_foodgrp=8;
+      window.selectedMeal = undefined;
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
+    case "ultra-frais laitier":
+      file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_10.csv";
+      category_mapped = "g/jour";
+      color_scale = "grey_shades";
+      window.selected_foodgrp=10;
+      window.selectedMeal = undefined;
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
+    case "fromages":
+      file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_11.csv";
+      category_mapped = "g/jour";
+      color_scale = "light_gold_shades";
+      window.selected_foodgrp=11;
+      window.selectedMeal = undefined;
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
+    case "légumes":
+      file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_23.csv";
+      category_mapped = "g/jour";
+      color_scale = "spinach_shades";
+      window.selected_foodgrp=23;
+      window.selectedMeal = undefined;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -181,6 +209,7 @@ function updateMeansMap(category){
       category_mapped = "g/jour";
       color_scale = "red_shades";
       window.selected_foodgrp=17;
+      window.selectedMeal = undefined;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 

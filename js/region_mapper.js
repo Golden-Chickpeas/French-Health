@@ -24,13 +24,12 @@ function openTab(tabName) {
     document.getElementById(tabName).style.display = "block";
 }
 
-function displayVisualisationAccessBar(show){
-  if (show) document.getElementById("visu_accesser").style.display = "block";
-  else  document.getElementById("visu_accesser").style.display = "none";
+function displayRegionFoodgrpVisuAccessBar(show){
+  if (show) document.getElementById("region_foodgrp_visu_accesser").style.display = "block";
+  else  document.getElementById("region_foodgrp_visu_accesser").style.display = "none";
 }
 
 function closeVisualisation(visuName){
-  console.log(visuName);
   document.getElementById(visuName).style.display='none';
 }
 
@@ -50,21 +49,38 @@ function goto_region(d,reg_num){
     reg_descrip.innerHTML='<h3>'+region_names[reg_num]+'</h3>';
 
     //  When a region is clicked display visualisation bar
-    displayVisualisationAccessBar(true);
+    if (typeof window.selectedMeal !== 'undefined'){
 
-    // Create displayable visualisations on viusalisation access tabs
+      //Close all other access visus bars
+      closeVisualisation('week_circle_pack');
+      closeVisualisation('icicle_container');
+      closeVisualisation('hierarchy_barchart');
+      displayRegionFoodgrpVisuAccessBar(false);
 
-    // First tab : circle packing
-    region_foodgrp_hierarchy_data='data/json/foodgrp_sougrp_conso_week/region'+reg_num+'/consos_grp_'+window.selected_foodgrp+'_region_'+reg_num+'.json'
-    load_circle_packing(region_foodgrp_hierarchy_data);
-    load_hierarchical_barchart(region_foodgrp_hierarchy_data);
+      // Displays this type of visu acess bar
+      displayRegionMealsVisuAccessBar(true);
+      display_meal_timeline(reg_num);
+    }
+    else{
 
-    //Second tab : Icicle
-    region_foodgrp_partition_data='data/json/foodgrp_conso_partition/region'+reg_num+'/consos_partition_'+window.selected_foodgrp+'_region_'+reg_num+'.json'
-    load_icicle(region_foodgrp_partition_data);
+      //Close other visu access bars
+      closeVisualisation('timeline');
+      closeVisualisation('sunburst');
+      displayRegionMealsVisuAccessBar(false);
 
-    display_meal_timeline(reg_num);
+      // Enable region food group visu bar
+      displayRegionFoodgrpVisuAccessBar(true);
 
+      // Create displayable visualisations on viusalisation access tabs
+      // First and second tab : circle_packing and hierarchical barchart
+      region_foodgrp_hierarchy_data='data/json/foodgrp_sougrp_conso_week/region'+reg_num+'/consos_grp_'+window.selected_foodgrp+'_region_'+reg_num+'.json'
+      load_circle_packing(region_foodgrp_hierarchy_data);
+      load_hierarchical_barchart(region_foodgrp_hierarchy_data);
+
+      //Third tab : Icicle
+      region_foodgrp_partition_data='data/json/foodgrp_conso_partition/region'+reg_num+'/consos_partition_'+window.selected_foodgrp+'_region_'+reg_num+'.json'
+      load_icicle(region_foodgrp_partition_data);
+    }
 
   } else {
     x = width / 3.2;
@@ -73,8 +89,12 @@ function goto_region(d,reg_num){
     centered = null;
     closeVisualisation('week_circle_pack');
     closeVisualisation('icicle_container');
-    closeVisualisation('timeline_visu');
-    displayVisualisationAccessBar(false);
+    closeVisualisation('hierarchy_barchart');
+    displayRegionFoodgrpVisuAccessBar(false);
+
+    closeVisualisation('timeline');
+    closeVisualisation('sunburst');
+    displayRegionMealsVisuAccessBar(false);
     var reg_descrip=document.getElementById('description');
     reg_descrip.innerHTML='<h3> Santé et habitudes alimentaires en France</h3>';
   }
@@ -216,7 +236,7 @@ function load_circle_packing(data_file_path){
           .attr("dy", "-100");
 
         d3.select(textNode).append("tspan")
-          .text(d.data.size)
+          .text(d.data.size.toFixed(2))
           .attr("text-anchor", "middle")
           .attr("style", "font-weight: bold;" +
             "font-size: 50px;")
@@ -444,8 +464,6 @@ function load_icicle(data_file_path){
 
 }
 
-
-
 function load_hierarchical_barchart(data_file_path){
 
       //Remove all previous representations
@@ -661,7 +679,7 @@ function load_hierarchical_barchart(data_file_path){
             .attr("height", barHeight);
 
         bar.append("title")
-            .text(function(d) { return d.data.name; });
+            .text(function(d) { return d.data.name + "\n"+ d.value.toFixed(2); });
 
         return bar;
       }
