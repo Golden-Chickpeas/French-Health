@@ -10,7 +10,7 @@
 region_names={"1":"Région Parisienne", "2":"Champagne","3":"Picardie","4":"Haute-Normandie",
 "5":"Centre","6":"Basse-Normandie","7":"Bourgogne", "8":"Nord", "9":"Lorraine","10":"Alsace",
 "11":"Franche Comté","12":"Pays de la Loire", "13":"Bretagne","14":"Poitou Charentes",
-"15":"Aquitaine","16":"Midi-Pyrénées","17":"limousin","18":"Rhône-Alpes","19":"Auvergne",
+"15":"Aquitaine","16":"Midi-Pyrénées","17":"Limousin","18":"Rhône-Alpes","19":"Auvergne",
 "20":"Languedoc","21":"Provence Côte d'Azur"};
 
 // Hide all elements with class="containerTab", except for the one that matches the clickable grid column

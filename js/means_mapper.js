@@ -214,11 +214,56 @@ function updateMeansMap(category){
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
+    case "fruits":
+      file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_26.csv";
+      category_mapped = "g/jour";
+      color_scale = "fruit_shades";
+      window.selected_foodgrp=26;
+      window.selectedMeal = undefined;
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
     case "viande":
       file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_17.csv";
       category_mapped = "g/jour";
       color_scale = "red_shades";
       window.selected_foodgrp=17;
+      window.selectedMeal = undefined;
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
+    case "charcuterie":
+      file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_20.csv";
+      category_mapped = "g/jour";
+      color_scale = "salami_shades";
+      window.selected_foodgrp=20;
+      window.selectedMeal = undefined;
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
+    case "poissons":
+      file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_21.csv";
+      category_mapped = "g/jour";
+      color_scale = "fishy_shades";
+      window.selected_foodgrp=21;
+      window.selectedMeal = undefined;
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
+    case "sandwichs":
+      file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_37.csv";
+      category_mapped = "g/jour";
+      color_scale = "sandwich_shades";
+      window.selected_foodgrp=37;
+      window.selectedMeal = undefined;
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
+    case "plats composés":
+      file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_39.csv";
+      category_mapped = "g/jour";
+      color_scale = "fishy_shades";
+      window.selected_foodgrp=39;
       window.selectedMeal = undefined;
       load_dataset(file_path,category_mapped,color_scale);
       break;
