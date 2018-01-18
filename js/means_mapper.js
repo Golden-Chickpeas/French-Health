@@ -68,46 +68,56 @@ function display_dataset(data, unit){
 
 function update_legend(quantile_func,nb_quantiles, unit){
   // Delete the previous legend (if there is none, nothing happens)
-    d3.select('#legend').remove();
+  d3.select('#legend').remove();
   var width=800; var height=600;
 
-    var legend = d3.select('svg').append("g")
-             .attr("transform", "translate(" + Math.round((width / 2) + width * 0.2) + ", " + Math.round(height / 2) + ")")
-            .attr("id", "legend");
+  var legend = d3.select('svg').append("g")
+    .attr("transform", "translate(" + Math.round((width / 2) + width * 0.2) + ", " + Math.round(height / 2) + ")")
+    .attr("id", "legend");
+
+  var background = legend.append("svg:rect")
+    .classed("legend-background", true);
 
   legend.selectAll(".colorbar")
-        .data(d3.range(nb_quantiles))
-        .enter()
-        .append("svg:rect")
-        .attr("y", function (d) { return d * 20 + "px"; })
-        .attr("height", "20px")
-        .attr("width", "30px")
-        .attr("x", "0px")
-        .attr("class", function (d) { return "q" + d ; });
+    .data(d3.range(nb_quantiles))
+    .enter()
+    .append("svg:rect")
+    .attr("y", function (d) { return d * 20 + "px"; })
+    .attr("height", "20px")
+    .attr("width", "30px")
+    .attr("x", "0px")
+    .attr("class", function (d) { return "q" + d ; });
 
-        // Add legend to each color
-        legend.selectAll(".colorbar")
-            .data(d3.range(nb_quantiles))
-            .enter()
-            .append("text")
-            .attr("x", "30px")
-            .attr("y", function (d) { return (d * 21 + 12) + "px"; })
-            .text(function (d) {
-                            switch(d) {
-                                case 0 :
-                                    return "< " + Math.round(quantile_func.quantiles()[0]) + " " + unit;
-                                    break;
-                                case nb_quantiles-1 :
-                                    return "> " + Math.round(quantile_func.quantiles()[nb_quantiles-2]) + " "+ unit;
-                                    break;
-                                default :
-                                    return Math.round(quantile_func.quantiles()[d-1]) + " - " + Math.round(quantile_func.quantiles()[d]) + " "+ unit ;
-                                    break;
+  // Add legend to each color
+  legend.selectAll(".colorbar")
+    .data(d3.range(nb_quantiles))
+    .enter()
+    .append("text")
+    .attr("x", "30px")
+    .attr("y", function (d) { return (d * 21 + 12) + "px"; })
+    .text(function (d) {
+      switch(d) {
+        case 0 :
+          return "< " + Math.round(quantile_func.quantiles()[0]) + " " + unit;
+          break;
+        case nb_quantiles-1 :
+          return "> " + Math.round(quantile_func.quantiles()[nb_quantiles-2]) + " "+ unit;
+          break;
+        default :
+          return Math.round(quantile_func.quantiles()[d-1]) + " - " + Math.round(quantile_func.quantiles()[d]) + " "+ unit ;
+          break;
 
-                          }
+      }
 
-                    })
-                    .attr("id","legendText");
+    })
+    .attr("id","legendText");
+
+  background
+    .attr("height",legend._groups[0][0].getBBox().height)
+    .attr("width",legend._groups[0][0].getBBox().width)
+    .attr("x","-1px")
+    .attr("y","-4px");
+
 }
 
 function updateMeansMap(category){

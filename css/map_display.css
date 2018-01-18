@@ -2,6 +2,11 @@ rect.background {
   fill: white;
 }
 
+.legend-background{
+    opacity : 0.75;
+    fill : whitesmoke
+}
+
 .axis path,
 .axis line {
   fill: none;
