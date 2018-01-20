@@ -106,13 +106,19 @@ rect.background {
 .fruit_shades .q4 {fill: #fe5e21}
 .fruit_shades .q5 {fill: #ff0800}
 
-.sandwich_shades .q0 {fill: #ffeec4}
-.sandwich_shades .q1 {fill: #ffe2bb}
-.sandwich_shades .q2 {fill: #ffd5b3}
-.sandwich_shades .q3 {fill: #ffc8a9}
-.sandwich_shades .q4 {fill: #ffbc9f}
+.sandwich_shades .q0 {fill: #ffffe0}
+.sandwich_shades .q1 {fill: #fff0c4}
+.sandwich_shades .q2 {fill: #ffe1ac}
+.sandwich_shades .q3 {fill: #ffd298}
+.sandwich_shades .q4 {fill: #ffc187}
 .sandwich_shades .q5 {fill: #ffb265}
 
+.composed_shades .q0 {fill: #ffc0ff}
+.composed_shades .q1 {fill: #f992f7}
+.composed_shades .q2 {fill: #e66be4}
+.composed_shades .q3 {fill: #cb48cb}
+.composed_shades .q4 {fill: #ac27ac}
+.composed_shades .q5 {fill: #8b008b}
 
 
 /*Red shades obtained on https://gka.github.io/palettes/#colors=lightyellow,orange,deeppink,darkred|steps=4|bez=1|coL=1*/

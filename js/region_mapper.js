@@ -25,8 +25,14 @@ function openTab(tabName) {
 }
 
 function displayRegionFoodgrpVisuAccessBar(show){
-  if (show) document.getElementById("region_foodgrp_visu_accesser").style.display = "block";
-  else  document.getElementById("region_foodgrp_visu_accesser").style.display = "none";
+  if (show) {
+    document.getElementById("region_foodgrp_visu_accesser").style.display = "block";
+    document.getElementById("description").style.display = "none";
+  }
+  else{
+    document.getElementById("region_foodgrp_visu_accesser").style.display = "none";
+    document.getElementById("description").style.display = "block";
+  }
 }
 
 function closeVisualisation(visuName){
@@ -45,7 +51,7 @@ function goto_region(d,reg_num){
     k = 3;
     centered = d;
 
-    var reg_descrip=document.getElementById('description');
+    var reg_descrip=document.getElementById('description_header');
     reg_descrip.innerHTML='<h3>'+region_names[reg_num]+'</h3>';
 
     //  When a region is clicked display visualisation bar
@@ -95,7 +101,7 @@ function goto_region(d,reg_num){
     closeVisualisation('timeline');
     closeVisualisation('sunburst');
     displayRegionMealsVisuAccessBar(false);
-    var reg_descrip=document.getElementById('description');
+    var reg_descrip=document.getElementById('description_header');
     reg_descrip.innerHTML='<h3> Santé et habitudes alimentaires en France</h3>';
   }
 

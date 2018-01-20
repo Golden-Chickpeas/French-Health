@@ -262,7 +262,7 @@ function updateMeansMap(category){
     case "plats composés":
       file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_39.csv";
       category_mapped = "g/jour";
-      color_scale = "fishy_shades";
+      color_scale = "composed_shades";
       window.selected_foodgrp=39;
       window.selectedMeal = undefined;
       load_dataset(file_path,category_mapped,color_scale);
