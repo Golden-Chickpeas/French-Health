@@ -11,6 +11,13 @@ function displayRegionMealsVisuAccessBar(show){
 }
 
 function display_meal_timeline(region) {
+  // Load the visualisation's information
+  d3.select('#timeline_info')
+  .attr("title","Cette visualisation montre le temps moyen du repas par jour de la semaine pour le repas et région sélectionnés"+ "\n" +
+  "En passant la souris sur une des courbes vous aurez les valeurs exactes du temps de repas pour le jour marqué en abscisse" +"\n"
+  +"Le temps passé pour chaque repas est exprimé en minutes");
+
+
   d3.select('#timeline_visu').remove();
 
 // basic SVG setup

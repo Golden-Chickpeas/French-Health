@@ -282,7 +282,8 @@ function load_icicle(data_file_path){
   d3.select('#icicle_info')
   .attr("title","Cette visualisation montre la hiérarchie des différentes consommations de la catégorie sur la semaine."+ "\n" +
   "En cliquant sur une des sous-catégories, la barre du dessus montre le pourcentage que cette sous-catégorie représente dans la consommation. " +"\n"
-  +"Une fois sous une des sous-catégories, passez votre souris sur les sous-catégories pour voir leur nom" +"\n" +"Les unités sur la dernière couche sont les mêmes que celles marquées sur la légende de la carte française");
+  +"Une fois sous une des sous-catégories, passez votre souris sur les sous-catégories pour voir leur nom" +"\n"
+  +"Les unités sur la dernière couche sont les mêmes que celles marquées sur la légende de la carte française");
 
   //Remove the previous representations
   d3.select('#icicle_visu').remove();
@@ -489,6 +490,13 @@ function load_icicle(data_file_path){
 }
 
 function load_hierarchical_barchart(data_file_path){
+
+  // Load the visualisation's information
+  d3.select('#barchart_info')
+  .attr("title","Cette visualisation montre les consommations par jour pour la catégorie et région sélectionnées"+ "\n" +
+  "Cliquez sur les barres pour accéder aux sous catégories suivantes" +"\n"
+  +"Cliquez sur une zone blanche de la représentation graphique pour revenir à la catégorie antérieure" +"\n"
+  +"Les unités des consommations par sous-catégorie celles marquées sur la légende de la carte française");
 
       //Remove all previous representations
       d3.select('#barchart_visu').remove();
