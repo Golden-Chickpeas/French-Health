@@ -1,7 +1,13 @@
 
 function displayRegionMealsVisuAccessBar(show){
-  if (show) document.getElementById("region_meals_visu_accesser").style.display = "block";
-  else  document.getElementById("region_meals_visu_accesser").style.display = "none";
+  if (show) {
+    document.getElementById("region_meals_visu_accesser").style.display = "block";
+    document.getElementById("description").style.display = "none";
+  }
+  else {
+    document.getElementById("region_meals_visu_accesser").style.display = "none";
+    document.getElementById("description").style.display = "block";
+  }
 }
 
 function display_meal_timeline(region) {

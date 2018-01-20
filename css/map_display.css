@@ -120,5 +120,41 @@ rect.background {
 .composed_shades .q4 {fill: #ac27ac}
 .composed_shades .q5 {fill: #8b008b}
 
+.butter_shades .q0 {fill: #ffffe0}
+.butter_shades .q1 {fill: #f0da86}
+.butter_shades .q2 {fill: #e2b24e}
+.butter_shades .q3 {fill: #ce8a2a}
+.butter_shades .q4 {fill: #b56511}
+.butter_shades .q5 {fill: #9a4002}
+
+.olive_shades .q0 {fill: #dee9b2}
+.olive_shades .q1 {fill: #ebf478}
+.olive_shades .q2 {fill: #d4e553}
+.olive_shades .q3 {fill: #bed63d}
+.olive_shades .q4 {fill: #a9c62d}
+.olive_shades .q5 {fill: #93b700}
+
+.breakfast_shades .q0 {fill: #eae3d9}
+.breakfast_shades .q1 {fill: #d5cdc0}
+.breakfast_shades .q2 {fill: #bfb7ab}
+.breakfast_shades .q3 {fill: #a8a396}
+.breakfast_shades .q4 {fill: #909084}
+.breakfast_shades .q5 {fill: #787c72}
+
+.lunch_shades .q0 {fill: #f6e3d9}
+.lunch_shades .q1 {fill: #ecccbd}
+.lunch_shades .q2 {fill: #d9b09d}
+.lunch_shades .q3 {fill: #c39681}
+.lunch_shades .q4 {fill: #ac7c67}
+.lunch_shades .q5 {fill: #96644e}
+
+.dinner_shades .q0 {fill: #eaf1f3}
+.dinner_shades .q1 {fill: #b2c8d3}
+.dinner_shades .q2 {fill: #7aa0b2}
+.dinner_shades .q3 {fill: #497a8e}
+.dinner_shades .q4 {fill: #275365}
+.dinner_shades .q5 {fill: #142f39}
+
+
 
 /*Red shades obtained on https://gka.github.io/palettes/#colors=lightyellow,orange,deeppink,darkred|steps=4|bez=1|coL=1*/

@@ -130,7 +130,7 @@ function updateMeansMap(category){
     case "petit-déjeuner":
       file_path= "data/csv/duree_repas_mean/duree_repas_mean_of_tyrep_Petit-dejeuner.csv";
       category_mapped = "minutes";
-      color_scale = "dark_gold_shades";
+      color_scale = "breakfast_shades";
       window.selectedMeal = "petit-déjeuner";
       load_dataset(file_path,category_mapped,color_scale);
       break;
@@ -138,7 +138,7 @@ function updateMeansMap(category){
     case "déjeuner":
       file_path= "data/csv/duree_repas_mean/duree_repas_mean_of_tyrep_Dejeuner.csv";
       category_mapped = "minutes";
-      color_scale = "dark_gold_shades";
+      color_scale = "lunch_shades";
       window.selectedMeal = "déjeuner";
       load_dataset(file_path,category_mapped,color_scale);
       break;
@@ -146,7 +146,7 @@ function updateMeansMap(category){
     case "dîner":
       file_path= "data/csv/duree_repas_mean/duree_repas_mean_of_tyrep_Diner.csv";
       category_mapped = "minutes";
-      color_scale = "dark_gold_shades";
+      color_scale = "dinner_shades";
       window.selectedMeal = "dîner";
       load_dataset(file_path,category_mapped,color_scale);
       break;
@@ -246,6 +246,24 @@ function updateMeansMap(category){
       category_mapped = "g/jour";
       color_scale = "fishy_shades";
       window.selected_foodgrp=21;
+      window.selectedMeal = undefined;
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
+    case "beurre":
+      file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_13.csv";
+      category_mapped = "g/jour";
+      color_scale = "butter_shades";
+      window.selected_foodgrp=13;
+      window.selectedMeal = undefined;
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
+    case "huile":
+      file_path = "data/csv/foodgrp_conso_means/conso_of_codgr_14.csv";
+      category_mapped = "mL/jour";
+      color_scale = "olive_shades";
+      window.selected_foodgrp=14;
       window.selectedMeal = undefined;
       load_dataset(file_path,category_mapped,color_scale);
       break;

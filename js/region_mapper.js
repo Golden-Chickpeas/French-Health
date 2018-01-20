@@ -118,8 +118,12 @@ function goto_region(d,reg_num){
 }
 
 
-
 function load_circle_packing(data_file_path){
+
+    // Load the visualisation's information
+    d3.select('#circle_pack_info')
+    .attr("title","Cette visualisation montre les différentes consommations par jour de la semaine."+ "\n" +
+    "Cliquez sur un des cercles pour zoomer." +"\n" + "Les unités sont les mêmes que celles marquées sur la légende de la carte française");
 
   //Remove all previous circle_pack visualisations
     d3.select('#circle_pack').remove();
@@ -274,6 +278,12 @@ function load_circle_packing(data_file_path){
 
 function load_icicle(data_file_path){
 
+  // Load the visualisation's information
+  d3.select('#icicle_info')
+  .attr("title","Cette visualisation montre la hiérarchie des différentes consommations de la catégorie sur la semaine."+ "\n" +
+  "En cliquant sur une des sous-catégories, la barre du dessus montre le pourcentage que cette sous-catégorie représente dans la consommation. " +"\n"
+  +"Une fois sous une des sous-catégories, passez votre souris sur les sous-catégories pour voir leur nom" +"\n" +"Les unités sur la dernière couche sont les mêmes que celles marquées sur la légende de la carte française");
+
   //Remove the previous representations
   d3.select('#icicle_visu').remove();
   d3.select('#trail').remove();
@@ -363,7 +373,7 @@ function load_icicle(data_file_path){
 
     function clicked(d) {
       x.domain([d.x0, d.x1]);
-      y.domain([d.y0, height/1.4]).range([d.depth ? 20 : 0, height/1.4]);
+      y.domain([d.y0, height/1.2]).range([d.depth ? 20 : 0, height/1.2]);
 
       rect.append("title")
           .text(function(d){return d.data.key;});
@@ -378,9 +388,9 @@ function load_icicle(data_file_path){
       fo.transition()
         .duration(750)
         .attr("x", function(d) { return x(d.x0); })
-        .attr("y", function(d) { return y(d.y0); })
-        .attr("width", function(d) { return x(d.x1-d.x0); })
-        .attr("height", function(d) { return y(d.y1-d.y0); });
+        .attr("y", function(d) { return Y(d.y0); })
+        .attr("width", function(d) { return x(d.x1)-x(d.x0)+10; })
+        .attr("height", function(d) { return y(d.y1)-y(d.y0); });
 
   	  // Update the trail;
   	  var percentage = (100 * d.value / totalSize).toPrecision(3);
