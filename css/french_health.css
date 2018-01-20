@@ -258,3 +258,17 @@ path.France_region:hover{
 	color : black;
 	fill : black;
 }
+
+.info_button{
+	background-color: transparent;
+	cursor: pointer;
+  height: 20px;
+  width: 30px;
+}
+
+.info_content{
+	display: none;
+}
+.span:hover .info_content{
+	display: block;
+}
