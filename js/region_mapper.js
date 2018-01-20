@@ -179,8 +179,15 @@ function load_circle_packing(data_file_path){
             }
         }
         else{
+          lab = ""
+          if (arr[i+1] != undefined){
+            lab = arr[i]+" "+arr[i+1]
+          }
+          else {
+            lab = arr[i]
+          }
           d3.select(this).append("tspan")
-              .text(arr[i]+" "+arr[i+1])
+              .text(lab)
               .attr("dy", i ? "1.2em" : 0)
               .attr("x", 0)
               .attr("text-anchor", "middle")
@@ -284,7 +291,7 @@ function load_icicle(data_file_path){
     var y = d3.scaleLinear()
         .range([0, height/1.4]);
 
-    var color = d3.scaleOrdinal(d3.schemeCategory20c);
+    var color = d3.scaleOrdinal(d3.schemeSet3);
 
     var partition = d3.partition()
         .size([width/2.5, height/1.4])
@@ -335,6 +342,7 @@ function load_icicle(data_file_path){
     		.data(root.descendants())
     		.enter().append("foreignObject")
         .on("click", clicked)
+          .attr("class", "icicle_label")
           .attr("x", function(d) { return d.x0; })
           .attr("y", function(d) { return d.y0; })
           .attr("width", function(d) { return d.x1 - d.x0; })

@@ -253,3 +253,8 @@ path.France_region:hover{
   width: 20%;
   height: auto;
 }
+
+.icicle_label {
+	color : black;
+	fill : black;
+}
