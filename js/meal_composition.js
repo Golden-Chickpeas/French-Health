@@ -18,6 +18,7 @@ function load_meal_composition(data_file_path){
 
     // Breadcrumb dimensions: width, height, spacing, width of tip/tail.
       var b = {w: 150, h: 30, s: 3, t: 10};
+      var totalSize=0;
 
     var svg = d3.select("#sunburst_container").append("svg")
             .attr("id", "sunburst_visu")
@@ -50,6 +51,10 @@ function load_meal_composition(data_file_path){
 
       root = d3.hierarchy(root);
       root.sum(function(d) { return d.size; });
+
+      //get total size from rect
+    totalSize = root.value;
+
       path = svg.selectAll("path")
           .data(partition(root).descendants())
         .enter().append("path")
@@ -58,7 +63,7 @@ function load_meal_composition(data_file_path){
           .attr("stroke", "rgb(100,100,100)")
           .on("click", click)
         .append("title")
-          .text(function(d) { return d.data.name + "\n" + formatNumber(d.value); });
+          .text(function(d) { return d.data.name + "\n" + (d.children ? formatNumber(d.value/totalSize * 100) : (d.value/totalSize * 100).toFixed(2)) + "%"; });
 
         //add breadcrumb
         initializeBreadcrumbTrail();
@@ -74,8 +79,7 @@ function load_meal_composition(data_file_path){
       	var sequenceArray = root.ancestors().reverse();
       	updateBreadcrumbs(sequenceArray, percentageString);
 
-        //get total size from rect
-     	totalSize = path.node().__data__.value;
+
 
     });
 
