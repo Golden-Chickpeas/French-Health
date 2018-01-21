@@ -603,9 +603,9 @@ function load_hierarchical_barchart(data_file_path){
         // Color the bars as appropriate.
         // Exiting nodes will obscure the parent bar, so hide it.
         enter.select("rect")
-            .style("fill", function(d) { return color(!!d.children); })
-          .filter(function(p) { return p === d; })
-            .style("fill-opacity", 1e-6);
+            .style("fill", function(d) { return color(!!d.children); });
+          // .filter(function(p) { return p === d; })
+            // .style("fill-opacity", 1e-6);
 
         // Update the x-scale domain.
         x.domain([0, d3.max(d.parent.children, function(d) { return d.value; })]).nice();
@@ -623,8 +623,8 @@ function load_hierarchical_barchart(data_file_path){
         // Transition entering rects to the new x-scale.
         // When the entering parent rect is done, make it visible!
         enterTransition.select("rect")
-            .attr("width", function(d) { return x(d.value); })
-            .each("end", function(p) { if (p === d) d3.select(this).style("fill-opacity", null); });
+            .attr("width", function(d) { return x(d.value); });
+            // .each("end", function(p) { if (p === d) d3.select(this).style("fill-opacity", null); });
 
         // Transition exiting bars to the parent's position.
         var exitTransition = exit.selectAll("g").transition()
