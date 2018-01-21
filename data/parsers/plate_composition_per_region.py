@@ -1,4 +1,4 @@
-# coding: cp1252
+# coding: utf-8
 # NAME
 #        fplate-composition_per_region
 #
@@ -38,11 +38,11 @@ for reg_code in range(1,22):
         # JSON for hierarchy...
         data = {}
         if type_repas == 1 :
-            data["name"] = "petit-déjeuner"
+            data["name"] = u"petit-déjeuner"
         elif type_repas == 3 :
-            data["name"] = "déjeuner"
+            data["name"] = u"déjeuner"
         else :
-            data["name"] = "dîner"
+            data["name"] = u"dîner"
 
         foodgrp_list = []
         #For each food group code (see codgr in field description of INCA2 Data)
