@@ -302,6 +302,10 @@ function load_dataset(file_path, category_mapped, color_scale) {
             // console.log(window.loaded_file_path);
             display_dataset(data, category_mapped);});
     $("#france_map svg").attr("class", color_scale);
+
+    if (typeof window.selectedRegion !== 'undefined') {
+      goto_region(window.clickedOnreg,window.selectedRegion)
+    }
 }
 
 function FilterMeansMap(filter_type, option){

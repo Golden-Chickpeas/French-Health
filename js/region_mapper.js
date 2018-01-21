@@ -51,6 +51,9 @@ function goto_region(d,reg_num){
     k = 3;
     centered = d;
 
+    window.clickeOnReg = d;
+    window.selectedRegion = reg_num;
+
     var reg_descrip=document.getElementById('description_header');
     reg_descrip.innerHTML='<h3>'+region_names[reg_num]+'</h3>';
 
@@ -104,6 +107,10 @@ function goto_region(d,reg_num){
     closeVisualisation('timeline');
     closeVisualisation('sunburst_container');
     displayRegionMealsVisuAccessBar(false);
+
+    window.clickeOnReg = undefined;
+    window.selectedRegion = undefined;
+
     var reg_descrip=document.getElementById('description_header');
     reg_descrip.innerHTML='<h3> Santé et habitudes alimentaires en France</h3>';
   }
@@ -430,6 +437,7 @@ function load_icicle(data_file_path){
 
     // Generate a string that describes the points of a breadcrumb polygon.
     function breadcrumbPoints(d, i) {
+      console.log(b);
       var points = [];
       points.push("0,0");
       points.push(b.w + ",0");
@@ -445,6 +453,7 @@ function load_icicle(data_file_path){
     // Update the breadcrumb trail to show the current sequence and percentage.
     function updateBreadcrumbs(nodeArray, percentageString) {
 
+      console.log(nodeArray);
       // Data join; key function combines name and depth (= position in sequence).
       var trail = d3.select("#trail")
           .selectAll("g")
@@ -455,6 +464,7 @@ function load_icicle(data_file_path){
 
       // Add breadcrumb and label for entering nodes.
       var entering = trail.enter().append("g");
+      console.log(entering);
 
       entering.append("polygon")
           .attr("points", breadcrumbPoints)
