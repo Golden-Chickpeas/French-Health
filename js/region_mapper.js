@@ -45,7 +45,7 @@ function goto_region(d,reg_num){
   if (d && centered !== d) {
     var centroid = geopath.centroid(d);
     x= centroid[0]+80;
-    y=centroid[1]+80;
+    y=centroid[1]+120;
     // x = d3.event.pageX-150;
     // y = d3.event.pageY;
     k = 3;
@@ -513,7 +513,7 @@ function load_hierarchical_barchart(data_file_path){
       d3.select('#barchart_visu').remove();
 
       var x = d3.scaleLinear()
-        .range([0, width/2.5]);
+        .range([0, width/3]);
 
       var barHeight = 20;
 
@@ -533,7 +533,7 @@ function load_hierarchical_barchart(data_file_path){
                 .scale(x);
 
       var svg = d3.select("#hierarchy_barchart").append("svg")
-          .attr("width", width/2.5)
+          .attr("width", width/2.8)
           .attr("height", height/1.8)
           .attr("id","barchart_visu")
         .append("g")
