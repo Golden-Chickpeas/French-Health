@@ -66,12 +66,15 @@ function goto_region(d,reg_num){
       // Displays this type of visu acess bar
       displayRegionMealsVisuAccessBar(true);
       display_meal_timeline(reg_num);
+
+      meal_compo_data='data/json/meal_compositions/region'+reg_num+'/meal_'+window.selectedMeal+'_composition_region_'+reg_num+'.json';
+      load_meal_composition(meal_compo_data);
     }
     else{
 
       //Close other visu access bars
       closeVisualisation('timeline');
-      closeVisualisation('sunburst');
+      closeVisualisation('sunburst_container');
       displayRegionMealsVisuAccessBar(false);
 
       // Enable region food group visu bar
@@ -79,7 +82,7 @@ function goto_region(d,reg_num){
 
       // Create displayable visualisations on viusalisation access tabs
       // First and second tab : circle_packing and hierarchical barchart
-      region_foodgrp_hierarchy_data='data/json/foodgrp_sougrp_conso_week/region'+reg_num+'/consos_grp_'+window.selected_foodgrp+'_region_'+reg_num+'.json'
+      region_foodgrp_hierarchy_data='data/json/foodgrp_sougrp_conso_week/region'+reg_num+'/consos_grp_'+window.selected_foodgrp+'_region_'+reg_num+'.json';
       load_circle_packing(region_foodgrp_hierarchy_data);
       load_hierarchical_barchart(region_foodgrp_hierarchy_data);
 
@@ -99,7 +102,7 @@ function goto_region(d,reg_num){
     displayRegionFoodgrpVisuAccessBar(false);
 
     closeVisualisation('timeline');
-    closeVisualisation('sunburst');
+    closeVisualisation('sunburst_container');
     displayRegionMealsVisuAccessBar(false);
     var reg_descrip=document.getElementById('description_header');
     reg_descrip.innerHTML='<h3> Santé et habitudes alimentaires en France</h3>';
@@ -114,7 +117,6 @@ function goto_region(d,reg_num){
       .attr("d", geopath)
       .style("stroke-width", 1.5 / k + "px")
       .style("fill", "#99ff99");
-
 }
 
 

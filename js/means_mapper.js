@@ -131,7 +131,7 @@ function updateMeansMap(category){
       file_path= "data/csv/duree_repas_mean/duree_repas_mean_of_tyrep_Petit-dejeuner.csv";
       category_mapped = "minutes";
       color_scale = "breakfast_shades";
-      window.selectedMeal = "petit-déjeuner";
+      window.selectedMeal = 1;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -139,7 +139,7 @@ function updateMeansMap(category){
       file_path= "data/csv/duree_repas_mean/duree_repas_mean_of_tyrep_Dejeuner.csv";
       category_mapped = "minutes";
       color_scale = "lunch_shades";
-      window.selectedMeal = "déjeuner";
+      window.selectedMeal = 3;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -147,7 +147,7 @@ function updateMeansMap(category){
       file_path= "data/csv/duree_repas_mean/duree_repas_mean_of_tyrep_Diner.csv";
       category_mapped = "minutes";
       color_scale = "dinner_shades";
-      window.selectedMeal = "dîner";
+      window.selectedMeal = 5;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 

@@ -27,6 +27,7 @@
     <script src="js/means_mapper.js"></script>
     <script src="js/region_mapper.js"></script>
     <script src="js/meal_timeline_visu.js"></script>
+    <script src="js/meal_composition.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/french_health.css"/>
     <link rel="stylesheet" type="text/css" href="css/map_display.css"/>
@@ -148,8 +149,6 @@ Nous avons reutilisé ces données dans le cadre d'un projet universitaire et ce
             de la catégorie sélectionnée dans la région sélectionnée.<br/>
             Cliquez sur le bouton d'aide pour afficher la description de la visualisation affichée.
             <br/>
-
-
           </div>
            <br/>
            <br/>
@@ -184,7 +183,7 @@ Nous avons reutilisé ces données dans le cadre d'un projet universitaire et ce
           <!-- The grid for region visualisation of meals: 2 columns columns -->
          <div id="region_meals_visu_accesser" class="row" style="display:none;">
            <div class="column" onclick="openTab('timeline');" style="background:#ffcc99;">Timeline : temps de repas</div>
-           <div class="column" onclick="openTab('sunburst');" style="background:#ffcc99;"> Composition moyenne d'un plat</div>
+           <div class="column" onclick="openTab('sunburst_container');" style="background:#ffcc99;"> Composition moyenne d'un plat</div>
          </div>
 
          <!-- The expanding grid (hidden by default) -->
@@ -194,9 +193,9 @@ Nous avons reutilisé ces données dans le cadre d'un projet universitaire et ce
            <span onclick="closeVisualisation('timeline')" class="closebtn">x</span>
          </div>
 
-         <div id="sunburst" class="containerTab" style="display:none;background:transparent">
+         <div id="sunburst_container" class="containerTab" style="display:none;background:transparent">
            <span id="sunburst_info" class="info_button" data-toggle="tooltip" title="info"><img src="img/blue_question.png"></img></span>
-           <span onclick="closeVisualisation('sunburst')" class="closebtn">x</span>
+           <span onclick="closeVisualisation('sunburst_container')" class="closebtn">x</span>
          </div>
 
         </div>
