@@ -486,7 +486,7 @@ function load_hierarchical_barchart(data_file_path){
         .round(true);
           // .value(function(d) { return d.size; });
 
-      var xAxis = d3.axisBottom(x)
+      var xAxis = d3.axisTop(x)
                 .scale(x);
 
       var svg = d3.select("#hierarchy_barchart").append("svg")
