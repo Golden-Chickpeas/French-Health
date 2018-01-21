@@ -354,7 +354,6 @@ function load_icicle(data_file_path){
           .attr("fill", function(d) { return color((d.children ? d : d.parent).data.key); })
           .on("click", clicked);
 
-
       fo = fo
     		.data(root.descendants())
     		.enter().append("foreignObject")
@@ -368,6 +367,9 @@ function load_icicle(data_file_path){
           .text(function(d) { return d.children ? d.data.key : formatNumber(d.value);})
           .attr("fill","black");
 
+      fo.append("title")
+            .text(function(d){return d.data.key + "\n" + formatNumber(d.value);});
+
     	 //get total size from rect
     	totalSize = rect.node().__data__.value;
     });
@@ -375,9 +377,6 @@ function load_icicle(data_file_path){
     function clicked(d) {
       x.domain([d.x0, d.x1]);
       y.domain([d.y0, height/1.2]).range([d.depth ? 20 : 0, height/1.2]);
-
-      rect.append("title")
-          .text(function(d){return d.data.key;});
 
       rect.transition()
           .duration(750)
@@ -389,7 +388,7 @@ function load_icicle(data_file_path){
       fo.transition()
         .duration(750)
         .attr("x", function(d) { return x(d.x0); })
-        .attr("y", function(d) { return Y(d.y0); })
+        .attr("y", function(d) { return y(d.y0); })
         .attr("width", function(d) { return x(d.x1)-x(d.x0)+10; })
         .attr("height", function(d) { return y(d.y1)-y(d.y0); });
 
