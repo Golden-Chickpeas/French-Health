@@ -58,7 +58,8 @@ function goto_region(d,reg_num){
     reg_descrip.innerHTML='<h3>'+region_names[reg_num]+'</h3>';
 
     //  When a region is clicked display visualisation bar
-    if (typeof window.selectedMeal !== 'undefined'){
+    if ((typeof window.selectedMeal !== 'undefined') && (!window.sportSelected)){
+      console.log(window.sportSelected);
 
       //Close all other access visus bars
       closeVisualisation('week_circle_pack');
@@ -73,7 +74,7 @@ function goto_region(d,reg_num){
       meal_compo_data='data/json/meal_compositions/region'+reg_num+'/meal_'+window.selectedMeal+'_composition_region_'+reg_num+'.json';
       load_meal_composition(meal_compo_data);
     }
-    else{
+    else if (!window.sportSelected){
 
       //Close other visu access bars
       closeVisualisation('timeline');

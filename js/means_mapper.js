@@ -132,6 +132,7 @@ function updateMeansMap(category){
       category_mapped = "minutes";
       color_scale = "breakfast_shades";
       window.selectedMeal = 1;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -140,6 +141,7 @@ function updateMeansMap(category){
       category_mapped = "minutes";
       color_scale = "lunch_shades";
       window.selectedMeal = 3;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -148,6 +150,7 @@ function updateMeansMap(category){
       category_mapped = "minutes";
       color_scale = "dinner_shades";
       window.selectedMeal = 5;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -157,6 +160,7 @@ function updateMeansMap(category){
       color_scale = "blue_shades";
       window.selected_foodgrp=31;
       window.selectedMeal = undefined;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -166,6 +170,7 @@ function updateMeansMap(category){
       color_scale = "bottle_shades";
       window.selected_foodgrp=33;
       window.selectedMeal = undefined;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -175,6 +180,7 @@ function updateMeansMap(category){
       color_scale = "dark_gold_shades";
       window.selected_foodgrp=1;
       window.selectedMeal = undefined;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -184,6 +190,7 @@ function updateMeansMap(category){
       color_scale = "piepink_shades";
       window.selected_foodgrp=8;
       window.selectedMeal = undefined;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -193,6 +200,7 @@ function updateMeansMap(category){
       color_scale = "grey_shades";
       window.selected_foodgrp=10;
       window.selectedMeal = undefined;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -202,6 +210,7 @@ function updateMeansMap(category){
       color_scale = "light_gold_shades";
       window.selected_foodgrp=11;
       window.selectedMeal = undefined;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -211,6 +220,7 @@ function updateMeansMap(category){
       color_scale = "spinach_shades";
       window.selected_foodgrp=23;
       window.selectedMeal = undefined;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -220,6 +230,7 @@ function updateMeansMap(category){
       color_scale = "fruit_shades";
       window.selected_foodgrp=26;
       window.selectedMeal = undefined;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -229,6 +240,7 @@ function updateMeansMap(category){
       color_scale = "red_shades";
       window.selected_foodgrp=17;
       window.selectedMeal = undefined;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -238,6 +250,7 @@ function updateMeansMap(category){
       color_scale = "salami_shades";
       window.selected_foodgrp=20;
       window.selectedMeal = undefined;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -247,6 +260,7 @@ function updateMeansMap(category){
       color_scale = "fishy_shades";
       window.selected_foodgrp=21;
       window.selectedMeal = undefined;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -256,6 +270,7 @@ function updateMeansMap(category){
       color_scale = "butter_shades";
       window.selected_foodgrp=13;
       window.selectedMeal = undefined;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -265,6 +280,7 @@ function updateMeansMap(category){
       color_scale = "olive_shades";
       window.selected_foodgrp=14;
       window.selectedMeal = undefined;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -274,6 +290,7 @@ function updateMeansMap(category){
       color_scale = "sandwich_shades";
       window.selected_foodgrp=37;
       window.selectedMeal = undefined;
+      window.sportSelected = false;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
@@ -283,6 +300,16 @@ function updateMeansMap(category){
       color_scale = "composed_shades";
       window.selected_foodgrp=39;
       window.selectedMeal = undefined;
+      window.sportSelected = false;
+      load_dataset(file_path,category_mapped,color_scale);
+      break;
+
+    case "sedentarisme quotidien":
+      file_path= "data/csv/sedentary_means/sedentary_dailytime_region_mean.csv";
+      category_mapped = "minutes/jour";
+      color_scale = "tv_shades";
+      window.selectedMeal = undefined;
+      window.sportSelected = true;
       load_dataset(file_path,category_mapped,color_scale);
       break;
 
