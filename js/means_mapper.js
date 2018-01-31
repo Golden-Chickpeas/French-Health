@@ -75,6 +75,12 @@ function update_legend(quantile_func,nb_quantiles, unit){
     .attr("transform", "translate(" + Math.round((width / 2) + width * 0.2) + ", " + Math.round(height / 2) + ")")
     .attr("id", "legend");
 
+  var dragcontainer = d3.drag()
+    .on("drag", function(d, i) {
+      d3.select(this).attr("transform", "translate(" + (d.x = d3.event.x) + "," + (d.y = d3.event.y) + ")");
+    });
+  legend.datum({x: Math.round((width / 2) + width * 0.2) , y: Math.round(height / 2)}).call(dragcontainer);
+
   var background = legend.append("svg:rect")
     .classed("legend-background", true);
 

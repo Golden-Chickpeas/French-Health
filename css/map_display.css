@@ -6,6 +6,13 @@ rect.background {
     opacity : 0.75;
     fill : whitesmoke
 }
+#legend:hover{
+    cursor: move;
+}
+
+circle:hover{
+    cursor: pointer;
+}
 
 .axis path,
 .axis line {
